@@ -4,136 +4,172 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AnkurX: खबर भी, समझ भी</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 96V58' stroke='%231E7F47' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 62C34 60 16 46 12 18c24 2 38 18 38 44z' fill='%231E7F47'/%3E%3Cpath d='M50 62c16-2 34-16 38-44-24 2-38 18-38 44z' fill='%232F6BFF'/%3E%3C/svg%3E">
+<meta name="description" content="AnkurX: उत्तर बिहार के युवाओं का समाचार मंच। रोज़ सुबह-शाम जाँची-परखी खबरें, नौकरी-पढ़ाई के अवसर और नई सोच।">
 <meta property="og:title" content="AnkurX: खबर भी, समझ भी">
 <meta property="og:description" content="उत्तर बिहार के युवाओं का समाचार मंच">
 <meta property="og:url" content="https://ankurx.in/">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-
-<meta name="description" content="AnkurX: उत्तर बिहार के युवाओं का समाचार मंच। खबर भी, समझ भी।">
+<meta name="theme-color" content="#1E7F47">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 96V58' stroke='%231E7F47' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 62C34 60 16 46 12 18c24 2 38 18 38 44z' fill='%231E7F47'/%3E%3Cpath d='M50 62c16-2 34-16 38-44-24 2-38 18-38 44z' fill='%232F6BFF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
 <style>
-/* Layout: Mithila wall-painting meets a modern newsroom — a painted double-line border frames a clean news column; one bold hero, quiet sections below. */
+/* Mithila painted border + clean newsroom column. Views switch by #hash: home, b-<id>, archive, avsar, about. */
 :root{
   --ground:#F4F6EF; --paper:#FFFFFF; --ink:#16213A; --ink2:#4A5468; --line:#D9DED0;
   --leaf:#1E7F47; --leaf-soft:#E2F1E7; --turmeric:#E3A21A; --vermilion:#C2381F; --x:#2F6BFF;
+  --warn-bg:#FFF3D6; --bad-bg:#FBE4DF;
   --display:"Rozha One","Tiro Devanagari Hindi",Georgia,serif;
   --body:"Mukta","Noto Sans Devanagari",system-ui,sans-serif;
   --brand:"Bricolage Grotesque","Mukta",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
-  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF; color-scheme:dark}}
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF;
+  --warn-bg:#3A2E10; --bad-bg:#3A1C17; color-scheme:dark}}
 :root[data-theme="dark"]{
   --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
-  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF; color-scheme:dark}
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF;
+  --warn-bg:#3A2E10; --bad-bg:#3A1C17; color-scheme:dark}
 *{box-sizing:border-box}
-html{font-size:18px}
+html{font-size:18px;scroll-padding-top:80px}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);line-height:1.6}
+[hidden]{display:none!important}
 a{color:var(--leaf)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--x);outline-offset:2px;border-radius:6px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--x);outline-offset:2px;border-radius:6px}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-
-/* Mithila border band: double line + dots + small triangles, drawn in CSS */
 .band{height:22px;background:
   linear-gradient(var(--vermilion),var(--vermilion)) 0 2px/100% 2px no-repeat,
   linear-gradient(var(--vermilion),var(--vermilion)) 0 18px/100% 2px no-repeat,
   radial-gradient(circle,var(--turmeric) 2.6px,transparent 3px) 0 0/16px 22px repeat-x,
   conic-gradient(from 135deg at 50% 70%,var(--leaf) 0 90deg,transparent 0) 8px 4px/16px 12px repeat-x}
 
-header{padding-block:14px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.logo svg{width:44px;height:44px;flex:none}
-.word{font-family:var(--brand);font-weight:800;font-size:1.55rem;letter-spacing:-.02em;line-height:1}
-.word b{color:var(--x);font-weight:800}
-nav{display:flex;gap:6px;flex-wrap:wrap}
-nav a{color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:999px;font-weight:500}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ground)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:10px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.logo svg{width:38px;height:38px;flex:none}
+.word{font-family:var(--brand);font-weight:800;font-size:1.4rem;letter-spacing:-.02em;line-height:1}
+.word b{color:var(--x)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:var(--ink2);text-decoration:none;padding:5px 12px;border-radius:999px;font-weight:500;font-size:.95rem}
 nav a:hover{background:var(--leaf-soft);color:var(--ink)}
+nav a[aria-current="page"]{background:var(--ink);color:var(--ground)}
 
-.hero{padding-block:44px 36px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.hero{padding-block:38px 26px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
 .hero > *{min-width:0}
 .kicker{font-weight:700;color:var(--vermilion);letter-spacing:.04em;font-size:.9rem}
-h1{font-family:var(--brand);font-weight:800;font-size:clamp(3.2rem,9vw,5.6rem);line-height:.95;margin:.15em 0 .1em;letter-spacing:-.03em}
+h1{font-family:var(--brand);font-weight:800;font-size:clamp(3rem,9vw,5.2rem);line-height:.95;margin:.15em 0 .1em;letter-spacing:-.03em}
 h1 b{color:var(--x)}
-.tag{font-family:var(--display);font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.25;margin:.2em 0 .5em;text-wrap:balance}
+.tag{font-family:var(--display);font-size:clamp(1.6rem,4.4vw,2.5rem);line-height:1.25;margin:.2em 0 .5em;text-wrap:balance}
 .tag span{color:var(--leaf)}
-.lead{color:var(--ink2);font-size:1.1rem;max-width:34em;margin:0 0 1.4em}
+.lead{color:var(--ink2);font-size:1.08rem;max-width:34em;margin:0 0 1.2em}
 .ctas{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;padding:10px 17px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
 .btn.main{background:var(--leaf);border-color:var(--leaf);color:#fff}
 .soon{font-size:.72rem;font-weight:700;background:var(--turmeric);color:#16213A;border-radius:6px;padding:1px 6px}
-
 .emblem{aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;position:relative}
 .emblem::before{content:"";position:absolute;inset:14px;border-radius:50%;border:3px double var(--vermilion)}
-.emblem::after{content:"";position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle,var(--turmeric) 2.5px,transparent 3px) 0 0/18px 18px;opacity:.35;-webkit-mask:radial-gradient(circle,transparent 58%,#000 59%);mask:radial-gradient(circle,transparent 58%,#000 59%)}
-.emblem svg{width:62%;height:auto;position:relative;z-index:1}
+.emblem svg{width:60%;height:auto;position:relative}
 
-section{padding-block:34px}
-h2{font-family:var(--display);font-weight:400;font-size:1.9rem;margin:0 0 .2em;text-wrap:balance}
-.sub{color:var(--ink2);margin:0 0 1.2em}
+section{padding-block:28px}
+h2{font-family:var(--display);font-weight:400;font-size:1.85rem;margin:0 0 .2em;text-wrap:balance}
+.sub{color:var(--ink2);margin:0 0 1.1em}
+
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip-btn{font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink2);border-radius:999px;padding:4px 12px}
+.chip-btn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+input[type=search]{font:inherit;flex:1 1 220px;min-width:0;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
 
 .bulletin{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
-.bhead b{font-size:1.05rem}
+.bhead b{font-size:1.1rem}
 .bhead small{color:var(--ink2)}
-.item{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.item{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 18px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
 .item:last-child{border-bottom:0}
-.chip{grid-row:span 2;align-self:start;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.item.flash{animation:flash 2s ease-out}
+@keyframes flash{from{background:var(--leaf-soft)}to{background:transparent}}
+.item > div{min-width:0}
+.chip{align-self:start;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .c-job{background:var(--leaf-soft);color:var(--leaf)}
 .c-gen{background:color-mix(in srgb,var(--turmeric) 22%,transparent);color:var(--ink)}
 .c-new{background:color-mix(in srgb,var(--x) 16%,transparent);color:var(--x)}
-.item h3{margin:0;font-size:1.05rem;line-height:1.4}
-.item p{margin:0;color:var(--ink2);font-size:.95rem}
-.item p i{font-style:normal;font-size:.85rem;opacity:.85}
+.item h3{margin:0;font-size:1.06rem;line-height:1.4}
+.item p{margin:.2em 0 0;color:var(--ink2);font-size:.96rem}
+.meta{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:.84rem;color:var(--ink2)}
+.meta a{color:var(--ink2)}
+.act{font:inherit;font-size:.82rem;font-weight:700;border:1px solid var(--line);background:transparent;color:var(--ink2);border-radius:8px;padding:2px 9px;cursor:pointer;text-decoration:none}
+.act.wa{color:#128C4A;border-color:color-mix(in srgb,#128C4A 40%,var(--line))}
+.empty{padding:22px 18px;color:var(--ink2)}
 .note{font-size:.85rem;color:var(--ink2);margin-top:10px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:12px;flex-wrap:wrap}
 
 .segs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.seg{border-top:4px solid var(--c);padding:14px 4px 4px}
-.seg h3{font-family:var(--display);font-weight:400;font-size:1.35rem;margin:0}
-.seg .when{font-size:.8rem;font-weight:700;color:var(--c);letter-spacing:.03em}
+.seg{border-top:4px solid var(--c);padding:12px 4px 4px}
+.seg h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:0}
+.seg .when{font-size:.8rem;font-weight:700;color:var(--c)}
 .seg p{margin:.3em 0 0;color:var(--ink2);font-size:.95rem}
+
+.arch{display:grid;gap:10px}
+.day{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.day h3{margin:0 0 6px;font-size:1rem}
+.day ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.day a{text-decoration:none;color:var(--ink)}
+.day a:hover{text-decoration:underline}
+.day .slot{display:inline-block;min-width:3.6em;font-weight:700;color:var(--leaf)}
+.hits .item{border:1px solid var(--line);border-radius:12px;background:var(--paper);margin-bottom:8px}
+
+.opps{display:grid;gap:10px}
+.opp{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 14px}
+.opp > div{min-width:0}
+.opp h3{margin:0;font-size:1.04rem}
+.opp p{margin:.2em 0 0;color:var(--ink2);font-size:.94rem}
+.st{align-self:start;font-size:.8rem;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.st.open{background:var(--leaf-soft);color:var(--leaf)}
+.st.soon{background:var(--warn-bg);color:var(--ink)}
+.st.closed{background:var(--bad-bg);color:var(--vermilion)}
+.opp.is-closed{opacity:.7}
 
 .districts{display:flex;flex-wrap:wrap;gap:8px}
 .districts span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 13px;font-weight:500}
 .districts span.more{border-style:dashed;color:var(--ink2)}
-
 .mission{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .mission > *{min-width:0}
-blockquote{margin:0;font-family:var(--display);font-size:1.45rem;line-height:1.45;border-left:4px solid var(--vermilion);padding-left:18px;text-wrap:balance}
+blockquote{margin:0;font-family:var(--display);font-size:1.4rem;line-height:1.45;border-left:4px solid var(--vermilion);padding-left:18px;text-wrap:balance}
 .promise{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .promise li{display:grid;grid-template-columns:22px 1fr;gap:8px}
 .promise li::before{content:"✓";color:var(--leaf);font-weight:700}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
 
-footer{padding-block:26px 34px;color:var(--ink2);font-size:.92rem}
+footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
 .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .foot b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:8px 16px;border-radius:999px;font-weight:700;z-index:20}
 
 @media (max-width:820px){
-  .hero{grid-template-columns:1fr;padding-block:28px}
-  .emblem{max-width:260px;justify-self:center;order:-1}
+  .hero{grid-template-columns:1fr;padding-block:22px}
+  .emblem{max-width:200px;justify-self:center;order:-1}
   .segs{grid-template-columns:1fr 1fr}
   .mission{grid-template-columns:1fr}
 }
-@media (max-width:460px){.segs{grid-template-columns:1fr} nav{display:none}}
-@media (prefers-reduced-motion:no-preference){
-  .leafL,.leafR{transform-origin:50px 62px;animation:grow .9s ease-out both}
-  .leafR{animation-delay:.15s}
-  @keyframes grow{from{transform:scale(.6) rotate(-6deg)}to{transform:none}}
+@media (max-width:520px){
+  .segs{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr}
+  .opp{grid-template-columns:1fr}
+  nav a{padding:4px 9px;font-size:.88rem}
 }
+@media (prefers-reduced-motion:reduce){.item.flash{animation:none}}
 </style>
 </head>
 <body>
-
-
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="sprout" viewBox="0 0 100 100">
       <path d="M50 96 V58" stroke="var(--leaf)" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <path class="leafL" d="M50 62 C34 60 16 46 12 18 C36 20 50 36 50 62 Z" fill="var(--leaf)"/>
-      <path class="leafR" d="M50 62 C66 60 84 46 88 18 C64 20 50 36 50 62 Z" fill="var(--x)"/>
+      <path d="M50 62 C34 60 16 46 12 18 C36 20 50 36 50 62 Z" fill="var(--leaf)"/>
+      <path d="M50 62 C66 60 84 46 88 18 C64 20 50 36 50 62 Z" fill="var(--x)"/>
       <path d="M22 30 L50 60 M78 30 L50 60" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" fill="none" opacity=".75"/>
       <circle cx="50" cy="96" r="3.5" fill="var(--turmeric)"/>
     </symbol>
@@ -141,66 +177,51 @@ footer{padding-block:26px 34px;color:var(--ink2);font-size:.92rem}
 </svg>
 
 <div class="band" aria-hidden="true"></div>
-
-<header class="wrap">
-  <div class="top">
-    <a class="logo" href="#top" aria-label="AnkurX मुखपृष्ठ">
-      <svg role="img" aria-hidden="true"><use href="#sprout"/></svg>
-      <span class="word">Ankur<b>X</b></span>
-    </a>
+<header>
+  <div class="wrap top">
+    <a class="logo" href="#" aria-label="AnkurX मुखपृष्ठ"><svg aria-hidden="true"><use href="#sprout"/></svg><span class="word">Ankur<b>X</b></span></a>
     <nav aria-label="मुख्य">
-      <a href="#bulletin">आज की खबर</a>
-      <a href="#segments">अवसर और प्रतिभा</a>
-      <a href="#about">हमारे बारे में</a>
+      <a href="#" data-nav="home">आज</a>
+      <a href="#archive" data-nav="archive">पुराने बुलेटिन</a>
+      <a href="#avsar" data-nav="avsar">अवसर</a>
+      <a href="#about" data-nav="about">हमारे बारे में</a>
     </nav>
   </div>
 </header>
 
-<main id="top">
-  <div class="wrap hero">
-    <div>
-      <div class="kicker">उत्तर बिहार के युवाओं का समाचार मंच</div>
-      <h1>Ankur<b>X</b></h1>
-      <p class="tag">खबर भी, <span>समझ भी।</span></p>
-      <p class="lead">तिरहुत और मिथिला की ज़रूरी खबरें, नौकरी और पढ़ाई के अवसर, और नई सोच। हर दिन सुबह और शाम, जाँची-परखी, आसान भाषा में।</p>
-      <div class="ctas">
-        <a class="btn main" href="#bulletin">आज का बुलेटिन पढ़ें</a>
-        <span class="btn" aria-disabled="true">WhatsApp चैनल <span class="soon">जल्द</span></span>
+<main>
+  <!-- HOME -->
+  <div id="v-home">
+    <div class="wrap hero">
+      <div>
+        <div class="kicker">उत्तर बिहार के युवाओं का समाचार मंच</div>
+        <h1>Ankur<b>X</b></h1>
+        <p class="tag">खबर भी, <span>समझ भी।</span></p>
+        <p class="lead">तिरहुत और मिथिला की ज़रूरी खबरें, नौकरी और पढ़ाई के अवसर, और नई सोच। हर दिन सुबह और शाम, जाँची-परखी, आसान भाषा में।</p>
+        <div class="ctas">
+          <a class="btn main" href="#latest">आज का बुलेटिन</a>
+          <a class="btn" href="#avsar">अवसर देखें</a>
+          <span class="btn" aria-disabled="true">WhatsApp चैनल <span class="soon">जल्द</span></span>
+        </div>
       </div>
+      <div class="emblem" aria-hidden="true"><svg><use href="#sprout"/></svg></div>
     </div>
-    <div class="emblem" aria-hidden="true"><svg><use href="#sprout"/></svg></div>
   </div>
 
-  <section id="bulletin" class="wrap">
-    <h2>आज का बुलेटिन</h2>
+  <!-- BULLETIN (home + single) -->
+  <section id="latest" class="wrap" data-views="home bulletin">
+    <h2 id="b-title">ताज़ा बुलेटिन</h2>
     <p class="sub">सुबह 8 बजे और शाम 6 बजे। हर खबर के साथ उसका स्रोत।</p>
-    <div class="bulletin">
-      <div class="bhead"><b>सुबह का बुलेटिन</b><small>बुधवार, 11 नवंबर 2026 · नमूना</small></div>
-      <article class="item">
-        <span class="chip c-job">नौकरी-शिक्षा</span>
-        <h3>दरभंगा में बनेगा पायलट ट्रेनिंग संस्थान</h3>
-        <p>रक्षा मंत्रालय ने दरभंगा एयरपोर्ट पर फ्लाइंग ट्रेनिंग संस्थान के लिए NOC दी। अब पायलट बनने के लिए दिल्ली-मुंबई जाना ज़रूरी नहीं होगा। शुरू होने की तारीख अभी तय नहीं। <i>स्रोत: Patna Press</i></p>
-      </article>
-      <article class="item">
-        <span class="chip c-job">नौकरी-शिक्षा</span>
-        <h3>BPSC शिक्षक भर्ती (TRE 4.0): अफ़वाहों से बचें</h3>
-        <p>आवेदन की अंतिम तिथि 3 नवंबर बीत चुकी है। परीक्षा तिथि पर अलग-अलग बातें चल रही हैं; सिर्फ़ bpsc.bihar.gov.in पर भरोसा करें।</p>
-      </article>
-      <article class="item">
-        <span class="chip c-gen">आम खबर</span>
-        <h3>छठ पर मुज़फ़्फ़रपुर पश्चिमी में धारा 163 लागू</h3>
-        <p>घाटों पर निजी नाव और पटाखों पर पूरी रोक। जंक्शन पर 25 नवंबर तक पार्सल बुकिंग भी बंद। <i>स्रोत: प्रभात खबर</i></p>
-      </article>
-      <article class="item">
-        <span class="chip c-new">नई पहल</span>
-        <h3>बिहार की पहली वाटर मेट्रो पटना पहुँची</h3>
-        <p>कोच्चि से आई वाटर मेट्रो गंगा में चलेगी, किराया 50 रुपये। <i>स्रोत: प्रभात खबर</i></p>
-      </article>
+    <div class="tools">
+      <div class="chips" role="group" aria-label="विषय चुनें" id="cats"></div>
+      <input type="search" id="q" placeholder="इस बुलेटिन में खोजें" aria-label="बुलेटिन में खोजें">
     </div>
-    <p class="note">यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है।</p>
+    <div class="bulletin" id="bulletin" aria-live="polite"><div class="empty">बुलेटिन लोड हो रहा है…</div></div>
+    <div class="pager" id="pager"></div>
+    <p class="note">यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है। कोई गलती दिखे तो हमें बताएँ, हम खुलकर सुधारेंगे।</p>
   </section>
 
-  <section id="segments" class="wrap">
+  <section class="wrap" data-views="home" id="segments">
     <h2>खबर से आगे</h2>
     <p class="sub">उत्तर बिहार के युवाओं की छिपी प्रतिभा को पहचान और दिशा देने के लिए।</p>
     <div class="segs">
@@ -211,41 +232,185 @@ footer{padding-block:26px 34px;color:var(--ink2);font-size:.92rem}
     </div>
   </section>
 
-  <section class="wrap" aria-labelledby="dist">
-    <h2 id="dist">हमारा क्षेत्र</h2>
-    <p class="sub">तिरहुत और दरभंगा प्रमंडल के ज़िलों से शुरुआत।</p>
-    <div class="districts">
-      <span>मुज़फ़्फ़रपुर</span><span>दरभंगा</span><span>मधुबनी</span><span>समस्तीपुर</span><span>वैशाली</span><span>सीतामढ़ी</span><span>शिवहर</span><span>पूर्वी चंपारण</span><span>पश्चिमी चंपारण</span><span class="more">और आगे…</span>
-    </div>
+  <!-- ARCHIVE -->
+  <section class="wrap" id="v-archive" data-views="archive">
+    <h2>पुराने बुलेटिन</h2>
+    <p class="sub">हर बुलेटिन यहाँ सुरक्षित है। किसी पुरानी खबर को खोजें।</p>
+    <div class="tools"><input type="search" id="aq" placeholder="सभी बुलेटिनों में खोजें, जैसे: BPSC, दरभंगा, डेंगू" aria-label="सभी बुलेटिनों में खोजें"></div>
+    <div id="hits" class="hits"></div>
+    <div id="arch" class="arch"><div class="empty">लोड हो रहा है…</div></div>
   </section>
 
-  <section id="about" class="wrap">
-    <div class="mission">
-      <div>
-        <h2>हमारी सोच</h2>
-        <blockquote>हम सिर्फ़ खबर नहीं देते, उसे समझने की दृष्टि भी देते हैं, ताकि तिरहुत का हर युवा समझदार, जागरूक और भविष्य के लिए तैयार बने।</blockquote>
-      </div>
-      <div>
-        <h2>हमारा वादा</h2>
-        <ul class="promise">
-          <li>हर खबर का स्रोत बताया जाएगा।</li>
-          <li>जो खबर पक्की न हो, वह नहीं छपेगी।</li>
-          <li>खबरें अपने शब्दों में, किसी की नकल नहीं।</li>
-          <li>गलती हुई तो खुलकर सुधार।</li>
-          <li>AI की मदद ली जाती है, पर हर बुलेटिन इंसान जाँचता है।</li>
-        </ul>
-      </div>
-    </div>
+  <!-- OPPORTUNITIES -->
+  <section class="wrap" id="v-avsar" data-views="avsar">
+    <h2>अवसर</h2>
+    <p class="sub">नौकरी, छात्रवृत्ति, प्रवेश और प्रतियोगिताएँ। अंतिम तिथि के हिसाब से स्थिति अपने-आप बदलती है। आवेदन हमेशा आधिकारिक वेबसाइट पर ही करें।</p>
+    <div id="opps" class="opps"><div class="empty">लोड हो रहा है…</div></div>
   </section>
+
+  <!-- ABOUT -->
+  <div id="v-about" data-views="about">
+    <section class="wrap">
+      <div class="mission">
+        <div>
+          <h2>हमारी सोच</h2>
+          <blockquote>हम सिर्फ़ खबर नहीं देते, उसे समझने की दृष्टि भी देते हैं, ताकि तिरहुत का हर युवा समझदार, जागरूक और भविष्य के लिए तैयार बने।</blockquote>
+        </div>
+        <div>
+          <h2>हमारा वादा</h2>
+          <ul class="promise">
+            <li>हर खबर का स्रोत बताया जाएगा।</li>
+            <li>जो खबर पक्की न हो, वह नहीं छपेगी।</li>
+            <li>खबरें अपने शब्दों में, किसी की नकल नहीं।</li>
+            <li>गलती हुई तो खुलकर सुधार, और सुधार की तारीख के साथ।</li>
+            <li>AI की मदद ली जाती है, पर हर बुलेटिन इंसान जाँचता है।</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="wrap">
+      <h2>हमारा क्षेत्र</h2>
+      <p class="sub">तिरहुत और दरभंगा प्रमंडल के ज़िलों से शुरुआत।</p>
+      <div class="districts"><span>मुज़फ़्फ़रपुर</span><span>दरभंगा</span><span>मधुबनी</span><span>समस्तीपुर</span><span>वैशाली</span><span>सीतामढ़ी</span><span>शिवहर</span><span>पूर्वी चंपारण</span><span>पश्चिमी चंपारण</span><span class="more">और आगे…</span></div>
+    </section>
+    <section class="wrap">
+      <div class="panel">
+        <h2>संपर्क और शिकायत</h2>
+        <p>किसी खबर में गलती, सुधार या शिकायत के लिए संपर्क विवरण जल्द यहाँ जोड़ा जाएगा। AnkurX सूचना प्रौद्योगिकी नियम, 2021 के अंतर्गत आचार संहिता का पालन करता है।</p>
+      </div>
+    </section>
+  </div>
 </main>
 
 <div class="band" aria-hidden="true"></div>
 <footer class="wrap">
   <div class="foot">
     <div><b>AnkurX</b> · खबर भी, समझ भी<br>ankurx.in · मुज़फ़्फ़रपुर, बिहार</div>
-    <div>संपर्क और शिकायत अधिकारी का विवरण जल्द।<br>© 2026 AnkurX</div>
+    <div><span id="upd"></span><br>© 2026 AnkurX</div>
   </div>
 </footer>
+<noscript><p class="wrap">बुलेटिन देखने के लिए अपने ब्राउज़र में JavaScript चालू करें।</p></noscript>
+<div class="toast" id="toast" role="status" hidden></div>
 
+<script>
+(function(){
+  const CATS={job:"नौकरी-शिक्षा",gen:"आम खबर",new:"नई पहल",talent:"प्रतिभा"};
+  const SLOT={am:"सुबह का बुलेटिन",pm:"शाम का बुलेटिन"};
+  const SITE="https://ankurx.in/";
+  const $=s=>document.querySelector(s);
+  const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const fmtDate=d=>{try{return new Date(d+"T00:00:00+05:30").toLocaleDateString("hi-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"Asia/Kolkata"})}catch(e){return d}};
+  const shortDate=d=>{try{return new Date(d+"T00:00:00+05:30").toLocaleDateString("hi-IN",{day:"numeric",month:"long",year:"numeric",timeZone:"Asia/Kolkata"})}catch(e){return d}};
+  const todayIST=()=>new Date(Date.now()+5.5*3600e3).toISOString().slice(0,10);
+  const get=p=>fetch(p+(p.includes("?")?"&":"?")+"t="+Math.floor(Date.now()/60000),{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+
+  let INDEX=null, cache={}, cur=null, cat="all", q="";
+  const loadB=id=>cache[id]?Promise.resolve(cache[id]):get("data/bulletins/"+id+".json").then(b=>(cache[id]=b));
+
+  function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,1800)}
+  function copy(text){
+    const done=()=>toast("लिंक कॉपी हो गया");
+    try{navigator.clipboard.writeText(text).then(done,()=>fallback())}catch(e){fallback()}
+    function fallback(){const i=document.createElement("input");i.value=text;document.body.appendChild(i);i.select();try{document.execCommand("copy");done()}catch(e){toast(text)}i.remove()}
+  }
+
+  function itemHTML(b,it,n){
+    const link=SITE+"#b-"+b.id+"-"+n;
+    const wa="https://wa.me/?text="+encodeURIComponent(it.head+"\n\n"+it.body+"\n\nAnkurX: खबर भी, समझ भी\n"+link);
+    return `<article class="item" id="b-${esc(b.id)}-${n}">
+      <span class="chip c-${esc(it.cat)}">${esc(CATS[it.cat]||it.cat)}</span>
+      <div><h3>${esc(it.head)}</h3><p>${esc(it.body)}</p>
+      <div class="meta">${it.district?`<span>📍 ${esc(it.district)}</span>`:""}${it.source?`<span>स्रोत: ${it.url?`<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.source)}</a>`:esc(it.source)}</span>`:""}
+      <a class="act wa" href="${wa}" target="_blank" rel="noopener">WhatsApp पर भेजें</a>
+      <button class="act" type="button" data-copy="${esc(link)}">लिंक कॉपी</button></div></div></article>`;
+  }
+
+  function renderBulletin(){
+    const box=$("#bulletin");
+    if(!cur){box.innerHTML='<div class="empty">अभी कोई बुलेटिन उपलब्ध नहीं है।</div>';return}
+    const items=cur.items.map((it,n)=>({it,n})).filter(({it})=>(cat==="all"||it.cat===cat)&&(!q||(it.head+" "+it.body+" "+(it.district||"")+" "+(it.source||"")).toLowerCase().includes(q)));
+    box.innerHTML=`<div class="bhead"><b>${esc(SLOT[cur.slot]||"बुलेटिन")}</b><small>${esc(fmtDate(cur.date))} · ${cur.items.length} खबरें</small></div>`+
+      (items.length?items.map(({it,n})=>itemHTML(cur,it,n)).join(""):'<div class="empty">इस चुनाव में कोई खबर नहीं मिली।</div>')+
+      (cur.corrections&&cur.corrections.length?`<div class="empty"><b>सुधार:</b> ${cur.corrections.map(esc).join(" · ")}</div>`:"");
+    // pager
+    const L=INDEX.bulletins, i=L.findIndex(x=>x.id===cur.id);
+    const older=L[i+1], newer=L[i-1];
+    $("#pager").innerHTML=(older?`<a class="btn" href="#b-${older.id}">← ${esc(SLOT[older.slot])}, ${esc(shortDate(older.date))}</a>`:"<span></span>")+(newer?`<a class="btn" href="#b-${newer.id}">${esc(SLOT[newer.slot])}, ${esc(shortDate(newer.date))} →</a>`:"");
+  }
+
+  function renderCats(){
+    const present=new Set(cur?cur.items.map(x=>x.cat):[]);
+    const list=[["all","सभी"],...Object.entries(CATS).filter(([k])=>present.has(k))];
+    $("#cats").innerHTML=list.map(([k,v])=>`<button type="button" class="chip-btn" data-cat="${k}" aria-pressed="${k===cat}">${esc(v)}</button>`).join("");
+  }
+
+  function showBulletin(id,focus){
+    return loadB(id).then(b=>{cur=b;cat="all";q="";$("#q").value="";renderCats();renderBulletin();
+      $("#b-title").textContent=(id===INDEX.bulletins[0].id)?"ताज़ा बुलेटिन":"बुलेटिन";
+      if(focus!=null){const el=document.getElementById("b-"+id+"-"+focus);if(el){el.scrollIntoView({block:"start"});el.classList.add("flash")}}
+    }).catch(()=>{$("#bulletin").innerHTML='<div class="empty">यह बुलेटिन नहीं मिला। <a href="#archive">पुराने बुलेटिन देखें</a>।</div>';$("#pager").innerHTML=""});
+  }
+
+  function renderArchive(){
+    const by={};INDEX.bulletins.forEach(b=>(by[b.date]=by[b.date]||[]).push(b));
+    $("#arch").innerHTML=Object.keys(by).sort().reverse().map(d=>`<div class="day"><h3>${esc(fmtDate(d))}</h3><ul>${by[d].map(b=>`<li><a href="#b-${b.id}"><span class="slot">${b.slot==="am"?"सुबह":"शाम"}</span> ${esc(b.lead||"")} <small>(${b.count} खबरें)</small></a></li>`).join("")}</ul></div>`).join("")||'<div class="empty">अभी कोई बुलेटिन नहीं।</div>';
+  }
+  function searchAll(term){
+    term=term.trim().toLowerCase();
+    if(term.length<2){$("#hits").innerHTML="";return}
+    Promise.all(INDEX.bulletins.map(b=>loadB(b.id).catch(()=>null))).then(all=>{
+      const hits=[];all.forEach(b=>b&&b.items.forEach((it,n)=>{if((it.head+" "+it.body+" "+(it.district||"")).toLowerCase().includes(term))hits.push(itemHTML(b,it,n).replace('<div class="meta">',`<div class="meta"><a href="#b-${b.id}-${n}">${esc(SLOT[b.slot])}, ${esc(shortDate(b.date))}</a>`))}));
+      $("#hits").innerHTML=hits.length?`<p class="sub">${hits.length} खबरें मिलीं</p>`+hits.slice(0,40).join(""):'<p class="sub">कुछ नहीं मिला। कोई और शब्द आज़माएँ।</p>';
+    });
+  }
+
+  function renderOpps(data){
+    const t=todayIST();
+    const items=(data.items||[]).map(o=>{const days=o.lastDate?Math.round((new Date(o.lastDate)-new Date(t))/864e5):null;
+      const st=days==null?"open":days<0?"closed":days<=7?"soon":"open";return {...o,days,st}})
+      .sort((a,b)=>({open:0,soon:-1,closed:1}[a.st]-{open:0,soon:-1,closed:1}[b.st])||String(a.lastDate||"9").localeCompare(String(b.lastDate||"9")));
+    const label=o=>o.st==="closed"?"बंद":o.st==="soon"?(o.days===0?"आज अंतिम दिन":o.days+" दिन बाकी"):"खुला";
+    $("#opps").innerHTML=items.length?items.map(o=>`<div class="opp ${o.st==="closed"?"is-closed":""}"><div><h3>${esc(o.title)}</h3>
+      <p>${esc(o.org||"")}${o.eligibility?" · "+esc(o.eligibility):""}</p>
+      <div class="meta">${o.lastDate?`<span>अंतिम तिथि: ${esc(shortDate(o.lastDate))}</span>`:""}${o.district?`<span>📍 ${esc(o.district)}</span>`:""}${o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">आधिकारिक वेबसाइट</a>`:""}</div></div>
+      <span class="st ${o.st}">${label(o)}</span></div>`).join("")
+      :'<div class="panel"><b>जल्द शुरू हो रहा है।</b><p class="sub" style="margin:.3em 0 0">यहाँ हर अवसर उसकी अंतिम तिथि और आधिकारिक लिंक के साथ दिखेगा। जाँच के बाद ही कोई अवसर जोड़ा जाता है।</p></div>';
+  }
+
+  function route(){
+    const h=decodeURIComponent(location.hash.slice(1));
+    let view="home", bid=null, focus=null;
+    const m=h.match(/^b-(\d{4}-\d{2}-\d{2}-(?:am|pm))(?:-(\d+))?$/);
+    if(m){view="bulletin";bid=m[1];focus=m[2]!=null?+m[2]:null}
+    else if(h==="archive"||h==="avsar"||h==="about")view=h;
+    else if(h==="latest"){view="home"}
+    document.querySelectorAll("[data-views]").forEach(el=>el.hidden=!el.dataset.views.split(" ").includes(view));
+    $("#v-home").hidden=view!=="home";
+    document.querySelectorAll("[data-nav]").forEach(a=>{const on=a.dataset.nav===(view==="bulletin"?"archive":view);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+    if(!INDEX)return;
+    if(view==="home"){showBulletin(INDEX.bulletins[0].id); if(h==="latest") setTimeout(()=>$("#latest").scrollIntoView(),0); else window.scrollTo(0,0)}
+    else if(view==="bulletin"){showBulletin(bid,focus); if(focus==null) window.scrollTo(0,0)}
+    else {window.scrollTo(0,0)}
+    if(view==="archive")renderArchive();
+  }
+
+  document.addEventListener("click",e=>{
+    const c=e.target.closest("[data-copy]");if(c){copy(c.dataset.copy);return}
+    const k=e.target.closest("[data-cat]");if(k){cat=k.dataset.cat;renderCats();renderBulletin()}
+  });
+  $("#q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();renderBulletin()});
+  let at;$("#aq").addEventListener("input",e=>{clearTimeout(at);at=setTimeout(()=>searchAll(e.target.value),250)});
+  window.addEventListener("hashchange",route);
+
+  route();
+  get("data/index.json").then(ix=>{
+    ix.bulletins.sort((a,b)=>b.id.localeCompare(a.id));INDEX=ix;
+    try{$("#upd").textContent="अंतिम अपडेट: "+new Date(ix.updated).toLocaleString("hi-IN",{day:"numeric",month:"long",hour:"numeric",minute:"2-digit",timeZone:"Asia/Kolkata"})}catch(e){}
+    if(!ix.bulletins.length){$("#bulletin").innerHTML='<div class="empty">पहला बुलेटिन जल्द आ रहा है।</div>';return}
+    route();
+  }).catch(()=>{$("#bulletin").innerHTML='<div class="empty">बुलेटिन लोड नहीं हो सका। कृपया पेज फिर से खोलें।</div>'});
+  get("data/opportunities.json").then(renderOpps).catch(()=>renderOpps({items:[]}));
+})();
+</script>
 </body>
 </html>
