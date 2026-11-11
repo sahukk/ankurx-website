@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AnkurX: खबर भी, समझ भी</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 96V58' stroke='%231E7F47' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 62C34 60 16 46 12 18c24 2 38 18 38 44z' fill='%231E7F47'/%3E%3Cpath d='M50 62c16-2 34-16 38-44-24 2-38 18-38 44z' fill='%232F6BFF'/%3E%3C/svg%3E">
+<meta property="og:title" content="AnkurX: खबर भी, समझ भी">
+<meta property="og:description" content="उत्तर बिहार के युवाओं का समाचार मंच">
+<meta property="og:url" content="https://ankurx.in/">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<meta name="description" content="AnkurX: उत्तर बिहार के युवाओं का समाचार मंच। खबर भी, समझ भी।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>
+/* Layout: Mithila wall-painting meets a modern newsroom — a painted double-line border frames a clean news column; one bold hero, quiet sections below. */
+:root{
+  --ground:#F4F6EF; --paper:#FFFFFF; --ink:#16213A; --ink2:#4A5468; --line:#D9DED0;
+  --leaf:#1E7F47; --leaf-soft:#E2F1E7; --turmeric:#E3A21A; --vermilion:#C2381F; --x:#2F6BFF;
+  --display:"Rozha One","Tiro Devanagari Hindi",Georgia,serif;
+  --body:"Mukta","Noto Sans Devanagari",system-ui,sans-serif;
+  --brand:"Bricolage Grotesque","Mukta",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF; color-scheme:dark}
+*{box-sizing:border-box}
+html{font-size:18px}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);line-height:1.6}
+a{color:var(--leaf)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--x);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Mithila border band: double line + dots + small triangles, drawn in CSS */
+.band{height:22px;background:
+  linear-gradient(var(--vermilion),var(--vermilion)) 0 2px/100% 2px no-repeat,
+  linear-gradient(var(--vermilion),var(--vermilion)) 0 18px/100% 2px no-repeat,
+  radial-gradient(circle,var(--turmeric) 2.6px,transparent 3px) 0 0/16px 22px repeat-x,
+  conic-gradient(from 135deg at 50% 70%,var(--leaf) 0 90deg,transparent 0) 8px 4px/16px 12px repeat-x}
+
+header{padding-block:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo svg{width:44px;height:44px;flex:none}
+.word{font-family:var(--brand);font-weight:800;font-size:1.55rem;letter-spacing:-.02em;line-height:1}
+.word b{color:var(--x);font-weight:800}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:999px;font-weight:500}
+nav a:hover{background:var(--leaf-soft);color:var(--ink)}
+
+.hero{padding-block:44px 36px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.hero > *{min-width:0}
+.kicker{font-weight:700;color:var(--vermilion);letter-spacing:.04em;font-size:.9rem}
+h1{font-family:var(--brand);font-weight:800;font-size:clamp(3.2rem,9vw,5.6rem);line-height:.95;margin:.15em 0 .1em;letter-spacing:-.03em}
+h1 b{color:var(--x)}
+.tag{font-family:var(--display);font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.25;margin:.2em 0 .5em;text-wrap:balance}
+.tag span{color:var(--leaf)}
+.lead{color:var(--ink2);font-size:1.1rem;max-width:34em;margin:0 0 1.4em}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.main{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.soon{font-size:.72rem;font-weight:700;background:var(--turmeric);color:#16213A;border-radius:6px;padding:1px 6px}
+
+.emblem{aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;position:relative}
+.emblem::before{content:"";position:absolute;inset:14px;border-radius:50%;border:3px double var(--vermilion)}
+.emblem::after{content:"";position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle,var(--turmeric) 2.5px,transparent 3px) 0 0/18px 18px;opacity:.35;-webkit-mask:radial-gradient(circle,transparent 58%,#000 59%);mask:radial-gradient(circle,transparent 58%,#000 59%)}
+.emblem svg{width:62%;height:auto;position:relative;z-index:1}
+
+section{padding-block:34px}
+h2{font-family:var(--display);font-weight:400;font-size:1.9rem;margin:0 0 .2em;text-wrap:balance}
+.sub{color:var(--ink2);margin:0 0 1.2em}
+
+.bulletin{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.bhead b{font-size:1.05rem}
+.bhead small{color:var(--ink2)}
+.item{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.chip{grid-row:span 2;align-self:start;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.c-job{background:var(--leaf-soft);color:var(--leaf)}
+.c-gen{background:color-mix(in srgb,var(--turmeric) 22%,transparent);color:var(--ink)}
+.c-new{background:color-mix(in srgb,var(--x) 16%,transparent);color:var(--x)}
+.item h3{margin:0;font-size:1.05rem;line-height:1.4}
+.item p{margin:0;color:var(--ink2);font-size:.95rem}
+.item p i{font-style:normal;font-size:.85rem;opacity:.85}
+.note{font-size:.85rem;color:var(--ink2);margin-top:10px}
+
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.seg{border-top:4px solid var(--c);padding:14px 4px 4px}
+.seg h3{font-family:var(--display);font-weight:400;font-size:1.35rem;margin:0}
+.seg .when{font-size:.8rem;font-weight:700;color:var(--c);letter-spacing:.03em}
+.seg p{margin:.3em 0 0;color:var(--ink2);font-size:.95rem}
+
+.districts{display:flex;flex-wrap:wrap;gap:8px}
+.districts span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 13px;font-weight:500}
+.districts span.more{border-style:dashed;color:var(--ink2)}
+
+.mission{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.mission > *{min-width:0}
+blockquote{margin:0;font-family:var(--display);font-size:1.45rem;line-height:1.45;border-left:4px solid var(--vermilion);padding-left:18px;text-wrap:balance}
+.promise{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.promise li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.promise li::before{content:"✓";color:var(--leaf);font-weight:700}
+
+footer{padding-block:26px 34px;color:var(--ink2);font-size:.92rem}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot b{color:var(--ink)}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;padding-block:28px}
+  .emblem{max-width:260px;justify-self:center;order:-1}
+  .segs{grid-template-columns:1fr 1fr}
+  .mission{grid-template-columns:1fr}
+}
+@media (max-width:460px){.segs{grid-template-columns:1fr} nav{display:none}}
+@media (prefers-reduced-motion:no-preference){
+  .leafL,.leafR{transform-origin:50px 62px;animation:grow .9s ease-out both}
+  .leafR{animation-delay:.15s}
+  @keyframes grow{from{transform:scale(.6) rotate(-6deg)}to{transform:none}}
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sprout" viewBox="0 0 100 100">
+      <path d="M50 96 V58" stroke="var(--leaf)" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <path class="leafL" d="M50 62 C34 60 16 46 12 18 C36 20 50 36 50 62 Z" fill="var(--leaf)"/>
+      <path class="leafR" d="M50 62 C66 60 84 46 88 18 C64 20 50 36 50 62 Z" fill="var(--x)"/>
+      <path d="M22 30 L50 60 M78 30 L50 60" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" fill="none" opacity=".75"/>
+      <circle cx="50" cy="96" r="3.5" fill="var(--turmeric)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="band" aria-hidden="true"></div>
+
+<header class="wrap">
+  <div class="top">
+    <a class="logo" href="#top" aria-label="AnkurX मुखपृष्ठ">
+      <svg role="img" aria-hidden="true"><use href="#sprout"/></svg>
+      <span class="word">Ankur<b>X</b></span>
+    </a>
+    <nav aria-label="मुख्य">
+      <a href="#bulletin">आज की खबर</a>
+      <a href="#segments">अवसर और प्रतिभा</a>
+      <a href="#about">हमारे बारे में</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="kicker">उत्तर बिहार के युवाओं का समाचार मंच</div>
+      <h1>Ankur<b>X</b></h1>
+      <p class="tag">खबर भी, <span>समझ भी।</span></p>
+      <p class="lead">तिरहुत और मिथिला की ज़रूरी खबरें, नौकरी और पढ़ाई के अवसर, और नई सोच। हर दिन सुबह और शाम, जाँची-परखी, आसान भाषा में।</p>
+      <div class="ctas">
+        <a class="btn main" href="#bulletin">आज का बुलेटिन पढ़ें</a>
+        <span class="btn" aria-disabled="true">WhatsApp चैनल <span class="soon">जल्द</span></span>
+      </div>
+    </div>
+    <div class="emblem" aria-hidden="true"><svg><use href="#sprout"/></svg></div>
+  </div>
+
+  <section id="bulletin" class="wrap">
+    <h2>आज का बुलेटिन</h2>
+    <p class="sub">सुबह 8 बजे और शाम 6 बजे। हर खबर के साथ उसका स्रोत।</p>
+    <div class="bulletin">
+      <div class="bhead"><b>सुबह का बुलेटिन</b><small>बुधवार, 11 नवंबर 2026 · नमूना</small></div>
+      <article class="item">
+        <span class="chip c-job">नौकरी-शिक्षा</span>
+        <h3>दरभंगा में बनेगा पायलट ट्रेनिंग संस्थान</h3>
+        <p>रक्षा मंत्रालय ने दरभंगा एयरपोर्ट पर फ्लाइंग ट्रेनिंग संस्थान के लिए NOC दी। अब पायलट बनने के लिए दिल्ली-मुंबई जाना ज़रूरी नहीं होगा। शुरू होने की तारीख अभी तय नहीं। <i>स्रोत: Patna Press</i></p>
+      </article>
+      <article class="item">
+        <span class="chip c-job">नौकरी-शिक्षा</span>
+        <h3>BPSC शिक्षक भर्ती (TRE 4.0): अफ़वाहों से बचें</h3>
+        <p>आवेदन की अंतिम तिथि 3 नवंबर बीत चुकी है। परीक्षा तिथि पर अलग-अलग बातें चल रही हैं; सिर्फ़ bpsc.bihar.gov.in पर भरोसा करें।</p>
+      </article>
+      <article class="item">
+        <span class="chip c-gen">आम खबर</span>
+        <h3>छठ पर मुज़फ़्फ़रपुर पश्चिमी में धारा 163 लागू</h3>
+        <p>घाटों पर निजी नाव और पटाखों पर पूरी रोक। जंक्शन पर 25 नवंबर तक पार्सल बुकिंग भी बंद। <i>स्रोत: प्रभात खबर</i></p>
+      </article>
+      <article class="item">
+        <span class="chip c-new">नई पहल</span>
+        <h3>बिहार की पहली वाटर मेट्रो पटना पहुँची</h3>
+        <p>कोच्चि से आई वाटर मेट्रो गंगा में चलेगी, किराया 50 रुपये। <i>स्रोत: प्रभात खबर</i></p>
+      </article>
+    </div>
+    <p class="note">यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है।</p>
+  </section>
+
+  <section id="segments" class="wrap">
+    <h2>खबर से आगे</h2>
+    <p class="sub">उत्तर बिहार के युवाओं की छिपी प्रतिभा को पहचान और दिशा देने के लिए।</p>
+    <div class="segs">
+      <div class="seg" style="--c:var(--leaf)"><div class="when">रोज़</div><h3>अवसर</h3><p>नौकरी, छात्रवृत्ति, प्रतियोगिता और फ़ेलोशिप, हमेशा आधिकारिक लिंक के साथ।</p></div>
+      <div class="seg" style="--c:var(--vermilion)"><div class="when">हर हफ़्ते</div><h3>प्रतिभा परिचय</h3><p>गाँव-कस्बे के युवा जिन्होंने कुछ नया किया: टॉपर, नवाचारी, कलाकार, उद्यमी।</p></div>
+      <div class="seg" style="--c:var(--turmeric)"><div class="when">हर हफ़्ते</div><h3>समझ बढ़ाओ</h3><p>एक विषय, आसान भाषा में: AI कैसे काम करता है, जीन रिसर्च क्या है, इंटरव्यू की तैयारी।</p></div>
+      <div class="seg" style="--c:var(--x)"><div class="when">हर हफ़्ते</div><h3>नई सोच</h3><p>विज्ञान, तकनीक और नवाचार, और उत्तर बिहार के लिए उनका मतलब।</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="dist">
+    <h2 id="dist">हमारा क्षेत्र</h2>
+    <p class="sub">तिरहुत और दरभंगा प्रमंडल के ज़िलों से शुरुआत।</p>
+    <div class="districts">
+      <span>मुज़फ़्फ़रपुर</span><span>दरभंगा</span><span>मधुबनी</span><span>समस्तीपुर</span><span>वैशाली</span><span>सीतामढ़ी</span><span>शिवहर</span><span>पूर्वी चंपारण</span><span>पश्चिमी चंपारण</span><span class="more">और आगे…</span>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="mission">
+      <div>
+        <h2>हमारी सोच</h2>
+        <blockquote>हम सिर्फ़ खबर नहीं देते, उसे समझने की दृष्टि भी देते हैं, ताकि तिरहुत का हर युवा समझदार, जागरूक और भविष्य के लिए तैयार बने।</blockquote>
+      </div>
+      <div>
+        <h2>हमारा वादा</h2>
+        <ul class="promise">
+          <li>हर खबर का स्रोत बताया जाएगा।</li>
+          <li>जो खबर पक्की न हो, वह नहीं छपेगी।</li>
+          <li>खबरें अपने शब्दों में, किसी की नकल नहीं।</li>
+          <li>गलती हुई तो खुलकर सुधार।</li>
+          <li>AI की मदद ली जाती है, पर हर बुलेटिन इंसान जाँचता है।</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="band" aria-hidden="true"></div>
+<footer class="wrap">
+  <div class="foot">
+    <div><b>AnkurX</b> · खबर भी, समझ भी<br>ankurx.in · मुज़फ़्फ़रपुर, बिहार</div>
+    <div>संपर्क और शिकायत अधिकारी का विवरण जल्द।<br>© 2026 AnkurX</div>
+  </div>
+</footer>
+
+</body>
+</html>
