@@ -87,6 +87,7 @@ input[type=search]{font:inherit;flex:1 1 220px;min-width:0;padding:8px 12px;bord
 .bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
 .bhead b{font-size:1.1rem}
 .bhead small{color:var(--ink2)}
+.pending{display:inline-block;vertical-align:2px;margin-left:6px;font-size:.74rem;font-weight:700;background:var(--warn-bg);color:var(--ink);border:1px solid var(--turmeric);border-radius:999px;padding:1px 9px}
 .item{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 18px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
 .item:last-child{border-bottom:0}
 .item.flash{animation:flash 2s ease-out}
@@ -218,7 +219,7 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
     </div>
     <div class="bulletin" id="bulletin" aria-live="polite"><div class="empty">बुलेटिन लोड हो रहा है…</div></div>
     <div class="pager" id="pager"></div>
-    <p class="note">यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है। कोई गलती दिखे तो हमें बताएँ, हम खुलकर सुधारेंगे।</p>
+    <p class="note" id="bnote">यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है। कोई गलती दिखे तो हमें बताएँ, हम खुलकर सुधारेंगे।</p>
   </section>
 
   <section class="wrap" data-views="home" id="segments">
@@ -263,7 +264,7 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
             <li>जो खबर पक्की न हो, वह नहीं छपेगी।</li>
             <li>खबरें अपने शब्दों में, किसी की नकल नहीं।</li>
             <li>गलती हुई तो खुलकर सुधार, और सुधार की तारीख के साथ।</li>
-            <li>AI की मदद ली जाती है, पर हर बुलेटिन इंसान जाँचता है।</li>
+            <li>AI की मदद ली जाती है। जो बुलेटिन संपादक की जाँच से पहले छपे, उस पर साफ़ लेबल लगा होता है।</li>
           </ul>
         </div>
       </div>
@@ -332,9 +333,12 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
     const box=$("#bulletin");
     if(!cur){box.innerHTML='<div class="empty">अभी कोई बुलेटिन उपलब्ध नहीं है।</div>';return}
     const items=cur.items.map((it,n)=>({it,n})).filter(({it})=>(cat==="all"||it.cat===cat)&&(!q||(it.head+" "+it.body+" "+(it.district||"")+" "+(it.source||"")).toLowerCase().includes(q)));
-    box.innerHTML=`<div class="bhead"><b>${esc(SLOT[cur.slot]||"बुलेटिन")}</b><small>${esc(fmtDate(cur.date))} · ${cur.items.length} खबरें</small></div>`+
+    box.innerHTML=`<div class="bhead"><b>${esc(SLOT[cur.slot]||"बुलेटिन")}${cur.unreviewed?' <span class="pending">संपादक की जाँच बाकी</span>':''}</b><small>${esc(fmtDate(cur.date))} · ${cur.items.length} खबरें</small></div>`+
       (items.length?items.map(({it,n})=>itemHTML(cur,it,n)).join(""):'<div class="empty">इस चुनाव में कोई खबर नहीं मिली।</div>')+
       (cur.corrections&&cur.corrections.length?`<div class="empty"><b>सुधार:</b> ${cur.corrections.map(esc).join(" · ")}</div>`:"");
+    $("#bnote").textContent=cur.unreviewed
+      ?"यह बुलेटिन AI द्वारा जाँचे-परखे स्रोतों से स्वतः तैयार किया गया है; संपादक की जाँच अभी बाकी है। कोई गलती दिखे तो हमें बताएँ, हम खुलकर सुधारेंगे।"
+      :"यह बुलेटिन AI की मदद से तैयार और संपादक द्वारा जाँचा गया है। कोई गलती दिखे तो हमें बताएँ, हम खुलकर सुधारेंगे।";
     // pager
     const L=INDEX.bulletins, i=L.findIndex(x=>x.id===cur.id);
     const older=L[i+1], newer=L[i-1];
