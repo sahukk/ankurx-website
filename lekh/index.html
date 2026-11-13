@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>लेख | AnkurX</title>
+<meta name="description" content="AnkurX के लेख: इतिहास, समाज और संस्कृति">
+<meta property="og:title" content="लेख">
+<meta property="og:description" content="AnkurX के लेख: इतिहास, समाज और संस्कृति">
+<meta property="og:url" content="https://ankurx.in/lekh/">
+<meta name="theme-color" content="#1E7F47">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 96V58' stroke='%231E7F47' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 62C34 60 16 46 12 18c24 2 38 18 38 44z' fill='%231E7F47'/%3E%3Cpath d='M50 62c16-2 34-16 38-44-24 2-38 18-38 44z' fill='%232F6BFF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>
+/* Mithila painted border + clean newsroom column. Views switch by #hash: home, b-<id>, archive, avsar, about. */
+:root{
+  --ground:#F4F6EF; --paper:#FFFFFF; --ink:#16213A; --ink2:#4A5468; --line:#D9DED0;
+  --leaf:#1E7F47; --leaf-soft:#E2F1E7; --turmeric:#E3A21A; --vermilion:#C2381F; --x:#2F6BFF;
+  --warn-bg:#FFF3D6; --bad-bg:#FBE4DF;
+  --display:"Rozha One","Tiro Devanagari Hindi",Georgia,serif;
+  --body:"Mukta","Noto Sans Devanagari",system-ui,sans-serif;
+  --brand:"Bricolage Grotesque","Mukta",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF;
+  --warn-bg:#3A2E10; --bad-bg:#3A1C17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#0F1512; --paper:#161E1A; --ink:#EEF2EA; --ink2:#AEB8AC; --line:#2A352F;
+  --leaf:#4CC27E; --leaf-soft:#1A2C22; --turmeric:#F0B53A; --vermilion:#F0705A; --x:#7FA6FF;
+  --warn-bg:#3A2E10; --bad-bg:#3A1C17; color-scheme:dark}
+*{box-sizing:border-box}
+html{font-size:18px;scroll-padding-top:80px}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);line-height:1.6}
+[hidden]{display:none!important}
+a{color:var(--leaf)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--x);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{height:22px;background:
+  linear-gradient(var(--vermilion),var(--vermilion)) 0 2px/100% 2px no-repeat,
+  linear-gradient(var(--vermilion),var(--vermilion)) 0 18px/100% 2px no-repeat,
+  radial-gradient(circle,var(--turmeric) 2.6px,transparent 3px) 0 0/16px 22px repeat-x,
+  conic-gradient(from 135deg at 50% 70%,var(--leaf) 0 90deg,transparent 0) 8px 4px/16px 12px repeat-x}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ground)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:10px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.logo svg{width:38px;height:38px;flex:none}
+.word{font-family:var(--brand);font-weight:800;font-size:1.4rem;letter-spacing:-.02em;line-height:1}
+.word b{color:var(--x)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{color:var(--ink2);text-decoration:none;padding:5px 12px;border-radius:999px;font-weight:500;font-size:.95rem}
+nav a:hover{background:var(--leaf-soft);color:var(--ink)}
+nav a[aria-current="page"]{background:var(--ink);color:var(--ground)}
+
+.hero{padding-block:38px 26px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.hero > *{min-width:0}
+.kicker{font-weight:700;color:var(--vermilion);letter-spacing:.04em;font-size:.9rem}
+h1{font-family:var(--brand);font-weight:800;font-size:clamp(3rem,9vw,5.2rem);line-height:.95;margin:.15em 0 .1em;letter-spacing:-.03em}
+h1 b{color:var(--x)}
+.tag{font-family:var(--display);font-size:clamp(1.6rem,4.4vw,2.5rem);line-height:1.25;margin:.2em 0 .5em;text-wrap:balance}
+.tag span{color:var(--leaf)}
+.lead{color:var(--ink2);font-size:1.08rem;max-width:34em;margin:0 0 1.2em}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;padding:10px 17px;border-radius:10px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.main{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.soon{font-size:.72rem;font-weight:700;background:var(--turmeric);color:#16213A;border-radius:6px;padding:1px 6px}
+.emblem{aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;position:relative}
+.emblem::before{content:"";position:absolute;inset:14px;border-radius:50%;border:3px double var(--vermilion)}
+.emblem svg{width:60%;height:auto;position:relative}
+
+section{padding-block:28px}
+h2{font-family:var(--display);font-weight:400;font-size:1.85rem;margin:0 0 .2em;text-wrap:balance}
+.sub{color:var(--ink2);margin:0 0 1.1em}
+
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip-btn{font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink2);border-radius:999px;padding:4px 12px}
+.chip-btn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+input[type=search]{font:inherit;flex:1 1 220px;min-width:0;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+
+.bulletin{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
+.bhead b{font-size:1.1rem}
+.bhead small{color:var(--ink2)}
+.pending{display:inline-block;vertical-align:2px;margin-left:6px;font-size:.74rem;font-weight:700;background:var(--warn-bg);color:var(--ink);border:1px solid var(--turmeric);border-radius:999px;padding:1px 9px}
+.item{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:14px 18px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+.item:last-child{border-bottom:0}
+.item.flash{animation:flash 2s ease-out}
+@keyframes flash{from{background:var(--leaf-soft)}to{background:transparent}}
+.item > div{min-width:0}
+.chip{align-self:start;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.c-job{background:var(--leaf-soft);color:var(--leaf)}
+.c-gen{background:color-mix(in srgb,var(--turmeric) 22%,transparent);color:var(--ink)}
+.c-new{background:color-mix(in srgb,var(--x) 16%,transparent);color:var(--x)}
+.item h3{margin:0;font-size:1.06rem;line-height:1.4}
+.item p{margin:.2em 0 0;color:var(--ink2);font-size:.96rem}
+.meta{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:.84rem;color:var(--ink2)}
+.meta a{color:var(--ink2)}
+.act{font:inherit;font-size:.82rem;font-weight:700;border:1px solid var(--line);background:transparent;color:var(--ink2);border-radius:8px;padding:2px 9px;cursor:pointer;text-decoration:none}
+.act.wa{color:#128C4A;border-color:color-mix(in srgb,#128C4A 40%,var(--line))}
+.empty{padding:22px 18px;color:var(--ink2)}
+.note{font-size:.85rem;color:var(--ink2);margin-top:10px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:12px;flex-wrap:wrap}
+
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.seg{border-top:4px solid var(--c);padding:12px 4px 4px}
+.seg h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:0}
+.seg .when{font-size:.8rem;font-weight:700;color:var(--c)}
+.seg p{margin:.3em 0 0;color:var(--ink2);font-size:.95rem}
+
+.arch{display:grid;gap:10px}
+.day{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.day h3{margin:0 0 6px;font-size:1rem}
+.day ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.day a{text-decoration:none;color:var(--ink)}
+.day a:hover{text-decoration:underline}
+.day .slot{display:inline-block;min-width:3.6em;font-weight:700;color:var(--leaf)}
+.hits .item{border:1px solid var(--line);border-radius:12px;background:var(--paper);margin-bottom:8px}
+
+.opps{display:grid;gap:10px}
+.opp{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 14px}
+.opp > div{min-width:0}
+.opp h3{margin:0;font-size:1.04rem}
+.opp p{margin:.2em 0 0;color:var(--ink2);font-size:.94rem}
+.st{align-self:start;font-size:.8rem;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.st.open{background:var(--leaf-soft);color:var(--leaf)}
+.st.soon{background:var(--warn-bg);color:var(--ink)}
+.st.closed{background:var(--bad-bg);color:var(--vermilion)}
+.opp.is-closed{opacity:.7}
+
+.districts{display:flex;flex-wrap:wrap;gap:8px}
+.districts span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 13px;font-weight:500}
+.districts span.more{border-style:dashed;color:var(--ink2)}
+.mission{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.mission > *{min-width:0}
+blockquote{margin:0;font-family:var(--display);font-size:1.4rem;line-height:1.45;border-left:4px solid var(--vermilion);padding-left:18px;text-wrap:balance}
+.promise{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.promise li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.promise li::before{content:"✓";color:var(--leaf);font-weight:700}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+
+footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--ground);padding:8px 16px;border-radius:999px;font-weight:700;z-index:20}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;padding-block:22px}
+  .emblem{max-width:200px;justify-self:center;order:-1}
+  .segs{grid-template-columns:1fr 1fr}
+  .mission{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .segs{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr}
+  .opp{grid-template-columns:1fr}
+  nav a{padding:4px 9px;font-size:.88rem}
+}
+@media (prefers-reduced-motion:reduce){.item.flash{animation:none}}
+
+/* ---- लेख (articles) ---- */
+.lekh{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 20px 26px;margin:18px 0 28px}
+.lekh .ltitle{font-family:var(--display);font-size:clamp(1.6rem,4.6vw,2.3rem);line-height:1.25;margin:.2em 0 .3em;color:var(--ink)}
+.lekh .byline{color:var(--ink2);margin:0 0 1em;font-size:.95rem}
+.lekh .lede{font-size:1.12rem;font-weight:500;border-left:4px solid var(--turmeric);padding:.2em 0 .2em .8em}
+.lekh h2{font-family:var(--display);font-size:1.45rem;margin:1.5em 0 .4em;color:var(--leaf)}
+.lekh p,.lekh li{font-size:1.06rem;line-height:1.85}
+.lekh ul,.lekh ol{padding-left:1.3em}
+.lekh li{margin:.45em 0}
+.compare{display:grid;gap:10px;margin:14px 0}
+.crow{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--ground)}
+.crow > div{line-height:1.7}
+.ctopic{font-weight:700;color:var(--vermilion)}
+.clab{font-weight:700;color:var(--ink2)}
+@media (min-width:720px){.crow{display:grid;grid-template-columns:9rem 1fr 1.4fr;gap:12px;align-items:start}}
+.lekh .wish{font-weight:700;color:var(--leaf);text-align:center;margin-top:1.4em}
+.sources{font-size:.92rem}
+.sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
+.llist{display:grid;gap:12px;margin:18px 0 28px}
+.lcard{display:block;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;text-decoration:none;color:var(--ink)}
+.lcard h3{font-family:var(--display);font-size:1.3rem;margin:0 0 .3em;color:var(--leaf)}
+.lcard small{color:var(--ink2)}
+.lcard p{margin:.4em 0 0;line-height:1.7}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sprout" viewBox="0 0 100 100">
+      <path d="M50 96 V58" stroke="var(--leaf)" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <path d="M50 62 C34 60 16 46 12 18 C36 20 50 36 50 62 Z" fill="var(--leaf)"/>
+      <path d="M50 62 C66 60 84 46 88 18 C64 20 50 36 50 62 Z" fill="var(--x)"/>
+      <path d="M22 30 L50 60 M78 30 L50 60" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" fill="none" opacity=".75"/>
+      <circle cx="50" cy="96" r="3.5" fill="var(--turmeric)"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="band" aria-hidden="true"></div>
+<header>
+  <div class="wrap top">
+    <a class="logo" href="/" aria-label="AnkurX मुखपृष्ठ"><svg aria-hidden="true"><use href="/#sprout"/></svg><span class="word">Ankur<b>X</b></span></a>
+    <nav aria-label="मुख्य">
+      <a href="/" data-nav="home">आज</a>
+      <a href="/#archive" data-nav="archive">पुराने बुलेटिन</a>
+      <a href="/#avsar" data-nav="avsar">अवसर</a>
+      <a href="/lekh/" data-nav="lekh" aria-current="page">लेख</a>
+      <a href="/#about" data-nav="about">हमारे बारे में</a>
+    </nav>
+  </div>
+</header>
+<main><div class="wrap">
+<section><h2>लेख</h2><p class="sub">खबर के पीछे की समझ: इतिहास, समाज और संस्कृति पर लेख।</p><div class="llist"><a class="lcard" href="/lekh/chhath-puja/"><h3>हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व</h3><small>13 नवंबर 2026</small><p>न मूर्ति, न मंदिर, न पंडित: सूरज, नदी और व्रती के संयम का महापर्व। इसका इतिहास, आज की तस्वीर और बाकी पूजाओं से इसका फ़र्क।</p></a></div></section>
+</div></main>
+<footer class="wrap">
+  <div class="foot">
+    <div><b>AnkurX</b> · खबर भी, समझ भी<br>ankurx.in · मुज़फ़्फ़रपुर, बिहार<br>संपादक: के. के. साहु · <a href="mailto:sahukk@gmail.com">sahukk@gmail.com</a> · <a href="/#about">शिकायत</a></div>
+    <div><span id="upd"></span><br>© 2026 AnkurX</div>
+  </div>
+</footer>
+</body>
+</html>
