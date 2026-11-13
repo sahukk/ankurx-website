@@ -186,6 +186,17 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
 .lcard h3{font-family:var(--display);font-size:1.3rem;margin:0 0 .3em;color:var(--leaf)}
 .lcard small{color:var(--ink2)}
 .lcard p{margin:.4em 0 0;line-height:1.7}
+
+/* ---- like + share bar ---- */
+.sbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 18px}
+.sbar .sb{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:999px;padding:7px 13px;font:600 .95rem var(--body);cursor:pointer;text-decoration:none;line-height:1}
+.sbar .sb:hover{border-color:var(--leaf)}
+.sbar .like[aria-pressed="true"]{background:var(--bad-bg);border-color:var(--vermilion);color:var(--vermilion)}
+.sbar .like .n{min-width:1ch}
+.sbar .wa{color:#128C4B}.sbar .fb{color:#1565D8}
+.sbar .note{font-size:.85rem;color:var(--ink2)}
+.sbar svg{width:18px;height:18px;fill:currentColor}
 </style>
 </head>
 <body>

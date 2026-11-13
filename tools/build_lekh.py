@@ -63,12 +63,88 @@ def page(head, sprite, header, footer, title, desc, url, body):
     return f"{h}{sprite}\n{header}\n<main><div class=\"wrap\">\n{body}\n</div></main>\n{footer}\n</body>\n</html>\n"
 
 
+SHARE_CSS = """
+/* ---- like + share bar ---- */
+.sbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 18px}
+.sbar .sb{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:999px;padding:7px 13px;font:600 .95rem var(--body);cursor:pointer;text-decoration:none;line-height:1}
+.sbar .sb:hover{border-color:var(--leaf)}
+.sbar .like[aria-pressed="true"]{background:var(--bad-bg);border-color:var(--vermilion);color:var(--vermilion)}
+.sbar .like .n{min-width:1ch}
+.sbar .wa{color:#128C4B}.sbar .fb{color:#1565D8}
+.sbar .note{font-size:.85rem;color:var(--ink2)}
+.sbar svg{width:18px;height:18px;fill:currentColor}
+"""
+
+SHARE_JS = """
+<script>
+(function(){
+  var NS="ankurx.in", API="https://abacus.jasoncameron.dev";
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  document.querySelectorAll(".sbar").forEach(function(bar){
+    var key="likes-"+bar.dataset.slug, url=bar.dataset.url, title=bar.dataset.title;
+    var like=bar.querySelector(".like"), n=bar.querySelector(".like .n");
+    function show(v){document.querySelectorAll('.sbar[data-slug="'+bar.dataset.slug+'"] .like .n').forEach(function(x){x.textContent=v>0?v:""})}
+    function mark(){document.querySelectorAll('.sbar[data-slug="'+bar.dataset.slug+'"] .like').forEach(function(x){x.setAttribute("aria-pressed","true")})}
+    if(store("liked:"+key))mark();
+    if(!window.__lk){window.__lk={}}
+    if(!window.__lk[key]){window.__lk[key]=1;
+      fetch(API+"/get/"+NS+"/"+key).then(function(r){return r.json()}).then(function(d){if(d&&d.value>=0)show(d.value)}).catch(function(){});}
+    like.addEventListener("click",function(){
+      if(store("liked:"+key))return;
+      store("liked:"+key,"1");mark();
+      fetch(API+"/hit/"+NS+"/"+key).then(function(r){return r.json()}).then(function(d){if(d&&d.value)show(d.value)}).catch(function(){});
+    });
+    var enc=encodeURIComponent;
+    bar.querySelector(".wa").href="https://wa.me/?text="+enc(title+"\\n"+url);
+    bar.querySelector(".fb").href="https://www.facebook.com/sharer/sharer.php?u="+enc(url);
+    bar.querySelector(".tw").href="https://twitter.com/intent/tweet?text="+enc(title)+"&url="+enc(url);
+    var cp=bar.querySelector(".cp");
+    cp.addEventListener("click",function(){
+      var done=function(){var o=cp.innerHTML;cp.textContent="लिंक कॉपी हो गया ✓";setTimeout(function(){cp.innerHTML=o},1800)};
+      if(navigator.share&&/Mobi|Android/i.test(navigator.userAgent)){navigator.share({title:title,url:url}).catch(function(){});return}
+      if(navigator.clipboard){navigator.clipboard.writeText(url).then(done,function(){prompt("यह लिंक कॉपी करें:",url)})}
+      else{prompt("यह लिंक कॉपी करें:",url)}
+    });
+  });
+})();
+</script>
+"""
+
+
+def share_bar(slug, title, url):
+    heart = '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.9 4.5c2.1 0 3.5 1.1 5.1 2.9 1.6-1.8 3-2.9 5.1-2.9 3.9 0 6 3.9 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg>'
+    return (f'<div class="sbar" data-slug="{slug}" data-url="{url}" data-title="{html.escape(title)}">'
+            f'<button class="sb like" type="button" aria-pressed="false" aria-label="पसंद करें">{heart}<span>पसंद आया</span> <span class="n"></span></button>'
+            '<a class="sb wa" target="_blank" rel="noopener">WhatsApp</a>'
+            '<a class="sb fb" target="_blank" rel="noopener">Facebook</a>'
+            '<a class="sb tw" target="_blank" rel="noopener">X</a>'
+            '<button class="sb cp" type="button">🔗 लिंक कॉपी / शेयर</button>'
+            '</div>')
+
+
 def main():
     head, sprite, header, footer = parts()
+    head = head.replace("</style>", SHARE_CSS + "</style>")
     for slug, title, date, summary in ARTICLES:
         d = os.path.join(SITE, "lekh", slug)
+        url = f"https://ankurx.in/lekh/{slug}/"
         body = open(os.path.join(d, "article_body.html"), encoding="utf-8").read()
-        out = page(head, sprite, header, footer, title, summary, f"https://ankurx.in/lekh/{slug}/", body)
+        bar = share_bar(slug, title, url)
+        body = re.sub(r'(<p class="byline">.*?</p>)', lambda m: m.group(1) + "\n  " + bar, body, count=1, flags=re.S)
+        end_bar = '<p class="note" style="margin-top:1.6em">लेख अच्छा लगा? पसंद करें और दोस्तों से शेयर करें:</p>' + bar
+        if "<h2>स्रोत</h2>" in body:
+            body = body.replace("<h2>स्रोत</h2>", end_bar + "\n  <h2>स्रोत</h2>", 1)
+        else:
+            body = body.replace("</article>", end_bar + "\n</article>", 1)
+        body += SHARE_JS
+        out = page(head, sprite, header, footer, title, summary, url, body)
+        img = os.path.join(d, "share.jpg")
+        if os.path.exists(img):
+            og = (f'<meta property="og:image" content="{url}share.jpg">\n<meta property="og:image:width" content="1200">\n'
+                  f'<meta property="og:image:height" content="630">\n<meta property="og:type" content="article">\n'
+                  '<meta name="twitter:card" content="summary_large_image">\n')
+            out = out.replace('<meta name="theme-color"', og + '<meta name="theme-color"', 1)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(out)
         print("built lekh/%s/index.html" % slug)
     cards = "\n".join(

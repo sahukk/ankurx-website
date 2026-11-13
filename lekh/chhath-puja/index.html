@@ -8,6 +8,11 @@
 <meta property="og:title" content="हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व">
 <meta property="og:description" content="न मूर्ति, न मंदिर, न पंडित: सूरज, नदी और व्रती के संयम का महापर्व। इसका इतिहास, आज की तस्वीर और बाकी पूजाओं से इसका फ़र्क।">
 <meta property="og:url" content="https://ankurx.in/lekh/chhath-puja/">
+<meta property="og:image" content="https://ankurx.in/lekh/chhath-puja/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1E7F47">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 96V58' stroke='%231E7F47' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 62C34 60 16 46 12 18c24 2 38 18 38 44z' fill='%231E7F47'/%3E%3Cpath d='M50 62c16-2 34-16 38-44-24 2-38 18-38 44z' fill='%232F6BFF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,6 +191,17 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
 .lcard h3{font-family:var(--display);font-size:1.3rem;margin:0 0 .3em;color:var(--leaf)}
 .lcard small{color:var(--ink2)}
 .lcard p{margin:.4em 0 0;line-height:1.7}
+
+/* ---- like + share bar ---- */
+.sbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 18px}
+.sbar .sb{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:999px;padding:7px 13px;font:600 .95rem var(--body);cursor:pointer;text-decoration:none;line-height:1}
+.sbar .sb:hover{border-color:var(--leaf)}
+.sbar .like[aria-pressed="true"]{background:var(--bad-bg);border-color:var(--vermilion);color:var(--vermilion)}
+.sbar .like .n{min-width:1ch}
+.sbar .wa{color:#128C4B}.sbar .fb{color:#1565D8}
+.sbar .note{font-size:.85rem;color:var(--ink2)}
+.sbar svg{width:18px;height:18px;fill:currentColor}
 </style>
 </head>
 <body>
@@ -218,6 +234,7 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
   <div class="kicker">लेख · आस्था और समाज</div>
   <h1 class="ltitle">हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व</h1>
   <p class="byline">के. के. साहु · 13 नवंबर 2026</p>
+  <div class="sbar" data-slug="chhath-puja" data-url="https://ankurx.in/lekh/chhath-puja/" data-title="हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व"><button class="sb like" type="button" aria-pressed="false" aria-label="पसंद करें"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.9 4.5c2.1 0 3.5 1.1 5.1 2.9 1.6-1.8 3-2.9 5.1-2.9 3.9 0 6 3.9 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg><span>पसंद आया</span> <span class="n"></span></button><a class="sb wa" target="_blank" rel="noopener">WhatsApp</a><a class="sb fb" target="_blank" rel="noopener">Facebook</a><a class="sb tw" target="_blank" rel="noopener">X</a><button class="sb cp" type="button">🔗 लिंक कॉपी / शेयर</button></div>
 
   <p class="lede">छठ ऐसा पर्व है जिसमें न मूर्ति चाहिए, न मंदिर, न पंडित और न ही कठिन संस्कृत मंत्र। चाहिए तो बस साफ़ पानी, डूबता-उगता सूरज और व्रती का अटूट संयम। यहाँ मंत्रों की जगह भोजपुरी, मैथिली और मगही के लोकगीत गूँजते हैं। इस साल छठ पूजा 13 से 16 नवंबर तक है। आइए समझें कि यह पर्व कहाँ से आया, आज इसका स्वरूप कैसा है और यह दूसरी पूजाओं से अलग क्यों है।</p>
 
@@ -282,6 +299,7 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
   <p>आज के लिए इसकी सीख सीधी है। प्रकृति का आभार मानो, ढलते सूरज का भी। पूजा की अगुवाई वह करे जो संयम निभाए, चाहे वह कोई भी हो। और नदियों को साफ़ रखो, क्योंकि छठ के लिए नदी ही मंदिर है।</p>
   <p class="wish">आप सभी को छठ महापर्व की हार्दिक शुभकामनाएँ। छठी मइया सबका भला करें।</p>
 
+  <p class="note" style="margin-top:1.6em">लेख अच्छा लगा? पसंद करें और दोस्तों से शेयर करें:</p><div class="sbar" data-slug="chhath-puja" data-url="https://ankurx.in/lekh/chhath-puja/" data-title="हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व"><button class="sb like" type="button" aria-pressed="false" aria-label="पसंद करें"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.9 4.5c2.1 0 3.5 1.1 5.1 2.9 1.6-1.8 3-2.9 5.1-2.9 3.9 0 6 3.9 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg><span>पसंद आया</span> <span class="n"></span></button><a class="sb wa" target="_blank" rel="noopener">WhatsApp</a><a class="sb fb" target="_blank" rel="noopener">Facebook</a><a class="sb tw" target="_blank" rel="noopener">X</a><button class="sb cp" type="button">🔗 लिंक कॉपी / शेयर</button></div>
   <h2>स्रोत</h2>
   <ul class="sources">
     <li><a href="https://en.wikipedia.org/wiki/Chhath" rel="noopener">Chhath (Wikipedia)</a></li>
@@ -297,6 +315,39 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
     <li><a href="https://organiser.org/2025/08/12/307786/bharat/centre-initiates-process-to-nominate-chhath-mahaparva-for-unesco-intangible-cultural-heritage-list/" rel="noopener">छठ महापर्व का यूनेस्को नामांकन (Organiser, 12 अगस्त 2025)</a></li>
   </ul>
 </article>
+
+<script>
+(function(){
+  var NS="ankurx.in", API="https://abacus.jasoncameron.dev";
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  document.querySelectorAll(".sbar").forEach(function(bar){
+    var key="likes-"+bar.dataset.slug, url=bar.dataset.url, title=bar.dataset.title;
+    var like=bar.querySelector(".like"), n=bar.querySelector(".like .n");
+    function show(v){document.querySelectorAll('.sbar[data-slug="'+bar.dataset.slug+'"] .like .n').forEach(function(x){x.textContent=v>0?v:""})}
+    function mark(){document.querySelectorAll('.sbar[data-slug="'+bar.dataset.slug+'"] .like').forEach(function(x){x.setAttribute("aria-pressed","true")})}
+    if(store("liked:"+key))mark();
+    if(!window.__lk){window.__lk={}}
+    if(!window.__lk[key]){window.__lk[key]=1;
+      fetch(API+"/get/"+NS+"/"+key).then(function(r){return r.json()}).then(function(d){if(d&&d.value>=0)show(d.value)}).catch(function(){});}
+    like.addEventListener("click",function(){
+      if(store("liked:"+key))return;
+      store("liked:"+key,"1");mark();
+      fetch(API+"/hit/"+NS+"/"+key).then(function(r){return r.json()}).then(function(d){if(d&&d.value)show(d.value)}).catch(function(){});
+    });
+    var enc=encodeURIComponent;
+    bar.querySelector(".wa").href="https://wa.me/?text="+enc(title+"\n"+url);
+    bar.querySelector(".fb").href="https://www.facebook.com/sharer/sharer.php?u="+enc(url);
+    bar.querySelector(".tw").href="https://twitter.com/intent/tweet?text="+enc(title)+"&url="+enc(url);
+    var cp=bar.querySelector(".cp");
+    cp.addEventListener("click",function(){
+      var done=function(){var o=cp.innerHTML;cp.textContent="लिंक कॉपी हो गया ✓";setTimeout(function(){cp.innerHTML=o},1800)};
+      if(navigator.share&&/Mobi|Android/i.test(navigator.userAgent)){navigator.share({title:title,url:url}).catch(function(){});return}
+      if(navigator.clipboard){navigator.clipboard.writeText(url).then(done,function(){prompt("यह लिंक कॉपी करें:",url)})}
+      else{prompt("यह लिंक कॉपी करें:",url)}
+    });
+  });
+})();
+</script>
 
 </div></main>
 <footer class="wrap">
