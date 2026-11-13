@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("srilanka-diary", "श्री लंका डायरी: हाथी, मसाले, चाय और 30 मिनट में थाने की रिपोर्ट", "13 नवंबर 2026",
+     "अगस्त 2023 की श्री लंका यात्रा: पिन्नावाला के हाथी, सिगिरिया, कैंडी, नुवारा एलिया की चाय, बेंटोटा का समुद्र और कोलंबो।"),
     ("chhath-puja", "हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व", "13 नवंबर 2026",
      "न मूर्ति, न मंदिर, न पंडित: सूरज, नदी और व्रती के संयम का महापर्व। इसका इतिहास, आज की तस्वीर और बाकी पूजाओं से इसका फ़र्क।"),
 ]
@@ -31,6 +33,9 @@ EXTRA_CSS = """
 .clab{font-weight:700;color:var(--ink2)}
 @media (min-width:720px){.crow{display:grid;grid-template-columns:9rem 1fr 1.4fr;gap:12px;align-items:start}}
 .lekh .wish{font-weight:700;color:var(--leaf);text-align:center;margin-top:1.4em}
+.lekh figure{margin:16px 0 20px}
+.lekh figure img{display:block;width:100%;max-height:520px;object-fit:contain;background:var(--ground);border-radius:10px}
+.lekh figcaption{font-size:.9rem;color:var(--ink2);text-align:center;margin-top:6px}
 .sources{font-size:.92rem}
 .sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
 .llist{display:grid;gap:12px;margin:18px 0 28px}
