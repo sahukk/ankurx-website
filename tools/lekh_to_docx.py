@@ -29,6 +29,9 @@ class P(HTMLParser):
         elif tag == "li": self.start(self.list)
         elif tag == "b": self.bold += 1
         elif tag == "a": self.href = a.get("href")
+        elif tag == "img": self.start("photo"); self.cur[1].append(("[फ़ोटो: " + a.get("src", "") + "]  ", False))
+        elif tag == "figcaption":
+            if self.blocks and self.blocks[-1][0] == "photo": self.cur = self.blocks[-1]
         elif tag == "div" and c == "compare": self.blocks.append(("table", []))
         elif tag == "div" and c == "crow": self.row = []; self.blocks[-1][1].append(self.row) if self.blocks[-1][0] == "table" else None
         elif tag == "div" and self.row is not None: self.cell = []; self.row.append(self.cell)
@@ -36,7 +39,7 @@ class P(HTMLParser):
     def handle_endtag(self, tag):
         c = self.cls.pop() if self.cls else ""
         if tag == "b": self.bold -= 1
-        elif tag in ("p", "h1", "h2", "li"): self.cur = None
+        elif tag in ("p", "h1", "h2", "li", "figcaption"): self.cur = None
         elif tag == "a" and self.href and self.cur:
             self.cur[1].append(("  " + self.href, False)); self.href = None
         elif tag == "div":
@@ -85,7 +88,7 @@ def main(slug):
         style = {"bullet": "List Bullet", "number": "List Number"}.get(kind)
         para = d.add_paragraph(style=style) if style else d.add_paragraph()
         size = {"title": 20, "h2": 15, "kicker": 10, "byline": 10}.get(kind, 12)
-        color = {"title": "16213A", "h2": "1E7F47", "kicker": "C2381F", "byline": "4A5468", "wish": "1E7F47"}.get(kind)
+        color = {"photo": "2F6BFF", "title": "16213A", "h2": "1E7F47", "kicker": "C2381F", "byline": "4A5468", "wish": "1E7F47"}.get(kind)
         for text, b in runs:
             fontify(para.add_run(text), size, b or kind in ("title", "h2", "lede", "wish"), color)
         if kind in ("h2",): para.paragraph_format.space_before = Pt(14)
