@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("dr-s-siddharth", "डॉ. एस. सिद्धार्थ: अफ़सर, पायलट, चित्रकार, और दिल से एक विद्यार्थी", "14 नवंबर 2026",
+     "प्रतिभा परिचय: IIT-IIM से पढ़े 1991 बैच के आईएएस, मुज़फ़्फ़रपुर के पूर्व डीएम, पायलट, फ़ोटोग्राफ़र और चित्रकार की कहानी।"),
     ("srilanka-diary", "श्री लंका डायरी: हाथी, मसाले, चाय और 30 मिनट में थाने की रिपोर्ट", "13 नवंबर 2026",
      "अगस्त 2023 की श्री लंका यात्रा: पिन्नावाला के हाथी, सिगिरिया, कैंडी, नुवारा एलिया की चाय, बेंटोटा का समुद्र और कोलंबो।"),
     ("chhath-puja", "हमारी छठ पूजा: इसका इतिहास, वर्तमान स्वरूप और आध्यात्मिक महत्त्व", "13 नवंबर 2026",
@@ -36,6 +38,7 @@ EXTRA_CSS = """
 .lekh figure{margin:16px 0 20px}
 .lekh figure img{display:block;width:100%;max-height:520px;object-fit:contain;background:var(--ground);border-radius:10px}
 .lekh figcaption{font-size:.9rem;color:var(--ink2);text-align:center;margin-top:6px}
+.lekh blockquote{margin:12px 0 16px;padding:12px 16px;border-left:4px solid var(--leaf);background:var(--ground);border-radius:8px;font-size:1.06rem;line-height:1.8}
 .sources{font-size:.92rem}
 .sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
 .llist{display:grid;gap:12px;margin:18px 0 28px}
