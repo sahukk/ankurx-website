@@ -18,6 +18,8 @@ ARTICLES = [  # slug, title, date (display), one-line summary
      "न मूर्ति, न मंदिर, न पंडित: सूरज, नदी और व्रती के संयम का महापर्व। इसका इतिहास, आज की तस्वीर और बाकी पूजाओं से इसका फ़र्क।"),
 ]
 
+PRATIBHA = {"dr-s-siddharth"}  # slugs shown on /pratibha/
+
 EXTRA_CSS = """
 /* ---- लेख (articles) ---- */
 .lekh{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 20px 26px;margin:18px 0 28px}
@@ -162,6 +164,19 @@ def main():
     out = page(head, sprite, header, footer, "लेख", "AnkurX के लेख: इतिहास, समाज और संस्कृति", "https://ankurx.in/lekh/", body)
     open(os.path.join(SITE, "lekh", "index.html"), "w", encoding="utf-8").write(out)
     print("built lekh/index.html")
+    # प्रतिभा परिचय section page: lists profile articles (slugs in PRATIBHA)
+    pcards = "\n".join(
+        f'<a class="lcard" href="/lekh/{s}/"><h3>{html.escape(t)}</h3><small>{html.escape(dt)}</small><p>{html.escape(sm)}</p></a>'
+        for s, t, dt, sm in ARTICLES if s in PRATIBHA)
+    body = ('<section><h2>प्रतिभा परिचय</h2><p class="sub">उत्तर बिहार और बिहार के प्रेरक व्यक्तित्व: '
+            'जिन्होंने अपनी मेहनत, हुनर और सेवा से नई राह दिखाई। आप भी किसी प्रतिभा की जानकारी भेज सकते हैं: '
+            '<a href="mailto:sahukk@gmail.com">sahukk@gmail.com</a></p>'
+            f'<div class="llist">{pcards}</div></section>')
+    out = page(head, sprite, header, footer, "प्रतिभा परिचय", "AnkurX प्रतिभा परिचय: बिहार के प्रेरक व्यक्तित्व",
+               "https://ankurx.in/pratibha/", body)
+    os.makedirs(os.path.join(SITE, "pratibha"), exist_ok=True)
+    open(os.path.join(SITE, "pratibha", "index.html"), "w", encoding="utf-8").write(out)
+    print("built pratibha/index.html")
 
 
 if __name__ == "__main__":
