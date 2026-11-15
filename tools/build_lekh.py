@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("machhar-bomb", "मच्छरों का 'एटम बम': जब घर के कमरे को 'गैस चैंबर' बनाकर मच्छरों का सफाया होता था!", "15 नवंबर 2026",
+     "यादों की अलमारी से: 1960 के दशक का 'एरोसोल बग बॉम्ब', लोहे का छोटा सिलेंडर जिसकी नोक तोड़ते ही मच्छरों पर 'सर्जिकल स्ट्राइक' होती थी। वीडियो के साथ।"),
     ("dr-s-siddharth", "डॉ. एस. सिद्धार्थ: अफ़सर, पायलट, चित्रकार, और दिल से एक विद्यार्थी", "14 नवंबर 2026",
      "प्रतिभा परिचय: IIT-IIM से पढ़े 1991 बैच के आईएएस, मुज़फ़्फ़रपुर के पूर्व डीएम, पायलट, फ़ोटोग्राफ़र और चित्रकार की कहानी।"),
     ("srilanka-diary", "श्री लंका डायरी: हाथी, मसाले, चाय और 30 मिनट में थाने की रिपोर्ट", "13 नवंबर 2026",
@@ -41,6 +43,9 @@ EXTRA_CSS = """
 .lekh figure img{display:block;width:100%;max-height:520px;object-fit:contain;background:var(--ground);border-radius:10px}
 .lekh figcaption{font-size:.9rem;color:var(--ink2);text-align:center;margin-top:6px}
 .lekh blockquote{margin:12px 0 16px;padding:12px 16px;border-left:4px solid var(--leaf);background:var(--ground);border-radius:8px;font-size:1.06rem;line-height:1.8}
+.lekh .vidbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#16213A}
+.lekh .vidbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lekh .vidwait{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
 .sources{font-size:.92rem}
 .sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
 .llist{display:grid;gap:12px;margin:18px 0 28px}
