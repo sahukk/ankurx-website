@@ -23,6 +23,7 @@ ARTICLES = [  # slug, title, date (display), one-line summary
 ]
 
 PRATIBHA = {"dr-s-siddharth"}  # slugs shown on /pratibha/
+ANOKHI = set()  # weekly "Anokhi Duniya" editions (slugs like anokhi-2026-11-20), shown on /anokhi/
 
 EXTRA_CSS = """
 /* ---- लेख (articles) ---- */
@@ -48,6 +49,13 @@ EXTRA_CSS = """
 .lekh .vidbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#16213A}
 .lekh .vidbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .lekh .vidwait{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+/* ---- Anokhi Duniya weekly stories ---- */
+.lekh .story{border-top:2px dashed var(--line);margin-top:1.6em;padding-top:.4em}
+.lekh .story .tag{display:inline-block;font-size:.85rem;font-weight:700;color:#fff;background:var(--vermilion);border-radius:999px;padding:2px 12px;margin-top:.8em}
+.lekh .story .sach{font-size:.95rem;color:var(--ink2);border-left:4px solid var(--leaf);padding-left:.7em}
+.lekh .kal{background:var(--ground);border:1px solid var(--line);border-left:6px solid var(--turmeric);border-radius:10px;padding:10px 14px;margin:12px 0}
+.lekh .kal b{color:var(--vermilion)}
+.lekh .embed{display:flex;justify-content:center;margin:12px 0}
 .sources{font-size:.92rem}
 .sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
 .llist{display:grid;gap:12px;margin:18px 0 28px}
@@ -69,6 +77,13 @@ def parts():
     header = re.sub(r'<a href="/lekh/" data-nav="lekh">', '<a href="/lekh/" data-nav="lekh" aria-current="page">', header)
     footer = footer.replace('href="#', 'href="/#')
     return head, sprite, header, footer
+
+
+def contact_link():
+    """The editor's contact link, copied from the first mailto: link on the home page (index.html)."""
+    src = open(os.path.join(SITE, "index.html"), encoding="utf-8").read()
+    m = re.search(r'<a href="mailto:([^"]+)"[^>]*>', src)
+    return f'<a href="mailto:{m.group(1)}">{m.group(1)}</a>' if m else '<a href="/#about">हमें बताएँ</a>'
 
 
 def page(head, sprite, header, footer, title, desc, url, body):
@@ -177,13 +192,30 @@ def main():
         for s, t, dt, sm in ARTICLES if s in PRATIBHA)
     body = ('<section><h2>प्रतिभा परिचय</h2><p class="sub">उत्तर बिहार और बिहार के प्रेरक व्यक्तित्व: '
             'जिन्होंने अपनी मेहनत, हुनर और सेवा से नई राह दिखाई। आप भी किसी प्रतिभा की जानकारी भेज सकते हैं: '
-            '<a href="mailto:sahukk@gmail.com">sahukk@gmail.com</a></p>'
+            f'{contact_link()}</p>'
             f'<div class="llist">{pcards}</div></section>')
     out = page(head, sprite, header, footer, "प्रतिभा परिचय", "AnkurX प्रतिभा परिचय: बिहार के प्रेरक व्यक्तित्व",
                "https://ankurx.in/pratibha/", body)
     os.makedirs(os.path.join(SITE, "pratibha"), exist_ok=True)
     open(os.path.join(SITE, "pratibha", "index.html"), "w", encoding="utf-8").write(out)
     print("built pratibha/index.html")
+    # अनोखी दुनिया, इस हफ़्ते: weekly section page (slugs in ANOKHI)
+    acards = "\n".join(
+        f'<a class="lcard" href="/lekh/{s}/"><h3>{html.escape(t)}</h3><small>{html.escape(dt)}</small><p>{html.escape(sm)}</p></a>'
+        for s, t, dt, sm in ARTICLES if s in ANOKHI)
+    if not acards:
+        acards = '<div class="lcard"><h3>पहला अंक जल्द</h3><p>हर शुक्रवार शाम 7 बजे, हफ़्ते की 7 अनोखी खबरें।</p></div>'
+    body = ('<section><h2>अनोखी दुनिया, इस हफ़्ते</h2><p class="sub"><b>क्या यह कल बदलेगा?</b> '
+            'हर शुक्रवार शाम 7 बजे: दुनिया भर से हफ़्ते की 7 सबसे अनोखी, मज़ेदार और हैरान करने वाली खबरें, '
+            'विज्ञान, अंतरिक्ष, तकनीक, कला और वायरल। हर खबर जाँची-परखी, उसकी पूरी कहानी और इतिहास के साथ, '
+            'और अंत में AnkurX की नज़र से: क्या यह हमारा कल बदलेगा? कोई अनोखी खबर दिखी? हमें भेजें: '
+            f'{contact_link()}</p>'
+            f'<div class="llist">{acards}</div></section>')
+    out = page(head, sprite, header, footer, "अनोखी दुनिया, इस हफ़्ते",
+               "AnkurX: हर हफ़्ते दुनिया की 7 अनोखी खबरें, क्या यह कल बदलेगा?", "https://ankurx.in/anokhi/", body)
+    os.makedirs(os.path.join(SITE, "anokhi"), exist_ok=True)
+    open(os.path.join(SITE, "anokhi", "index.html"), "w", encoding="utf-8").write(out)
+    print("built anokhi/index.html")
 
 
 if __name__ == "__main__":
