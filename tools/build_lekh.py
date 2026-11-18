@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("anokhi-2026-11-22-voyager", "वॉयजर-1: एक 'प्रकाश-दिन' दूर, 49 साल पुरानी मशीन जो आज भी घर पर चिट्ठी भेजती है", "22 नवंबर 2026",
+     "अनोखी दुनिया: 1977 में छोड़ा गया वॉयजर-1 अब इतना दूर है कि रोशनी को भी एक दिन लगता है। इसकी शुरुआत, खोजें, सोने का रिकॉर्ड (हिंदी अभिवादन के साथ), 70 KB का कंप्यूटर, विवाद, और सवाल: क्या यह कल बदलेगा?"),
     ("ankurx-kahani", "उम्र नहीं, जिज्ञासा चाहिए: AnkurX कैसे बना", "16 नवंबर 2026",
      "मैंने करके देखा: 1980 के दशक से कंप्यूटर का शौक, और अब AI की मदद से एक हफ़्ते में खड़ा हुआ उत्तर बिहार का समाचार मंच।"),
     ("machhar-bomb", "मच्छरों का 'एटम बम': जब घर के कमरे को 'गैस चैंबर' बनाकर मच्छरों का सफाया होता था!", "15 नवंबर 2026",
@@ -23,7 +25,7 @@ ARTICLES = [  # slug, title, date (display), one-line summary
 ]
 
 PRATIBHA = {"dr-s-siddharth"}  # slugs shown on /pratibha/
-ANOKHI = set()  # weekly "Anokhi Duniya" articles (one per week, slugs like anokhi-2026-11-22-<topic>), shown on /anokhi/
+ANOKHI = {"anokhi-2026-11-22-voyager"}  # weekly "Anokhi Duniya" articles (one per week, slugs like anokhi-2026-11-22-<topic>), shown on /anokhi/
 
 EXTRA_CSS = """
 /* ---- लेख (articles) ---- */
@@ -56,6 +58,48 @@ EXTRA_CSS = """
 .lekh .kal{background:var(--ground);border:1px solid var(--line);border-left:6px solid var(--turmeric);border-radius:10px;padding:10px 14px;margin:12px 0}
 .lekh .kal b{color:var(--vermilion)}
 .lekh .embed{display:flex;justify-content:center;margin:12px 0}
+/* ---- infographic: distance bars + timeline ---- */
+.infog{--bar:#1E7F47;--bar-hi:#2F6BFF;background:var(--ground);border:1px solid var(--line);border-radius:12px;padding:16px 14px;margin:18px 0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .infog{--bar:#3AA866;--bar-hi:#5A85E8}}
+:root[data-theme="dark"] .infog{--bar:#3AA866;--bar-hi:#5A85E8}
+.infog h3{font-family:var(--display);font-size:1.2rem;margin:0 0 .2em;color:var(--ink)}
+.infog .isub{font-size:.9rem;color:var(--ink2);margin:0 0 12px;line-height:1.6}
+.drow{display:grid;grid-template-columns:8.5rem 1fr 6.2rem;gap:8px;align-items:center;padding:5px 2px;border-radius:6px}
+.drow:hover{background:var(--paper)}
+.drow .dn{font-size:.95rem;line-height:1.3;color:var(--ink)}
+.drow .dn small{display:block;color:var(--ink2);font-size:.78rem}
+.drow .dt{height:14px;background:transparent;border-radius:4px}
+.drow .db{height:14px;min-width:3px;background:var(--bar);border-radius:0 4px 4px 0}
+.drow .dv{font-size:.88rem;color:var(--ink2);text-align:right;line-height:1.3}
+.drow.hi .dn{font-weight:700}.drow.hi .db{background:var(--bar-hi)}.drow.hi .dv{color:var(--ink);font-weight:700}
+.infog .inote{font-size:.85rem;color:var(--ink2);margin:10px 0 0;line-height:1.6}
+@media (max-width:560px){.drow{grid-template-columns:1fr 7.6rem;row-gap:2px}.drow .dn{grid-column:1/-1}.drow .dt{grid-column:1}
+  .drow .dv{font-size:.8rem;white-space:nowrap}}
+/* ---- scale diagram: Sun, planets, Voyager ---- */
+.sdiag{display:block;width:100%;height:auto;font-family:var(--body)}
+.sd-tall{display:none;max-width:420px;margin:0 auto}
+@media (max-width:640px){.sd-wide{display:none}.sd-tall{display:block}}
+.sd-axis{stroke:var(--line);stroke-width:3}
+.sd-axis2{stroke:var(--ink2);stroke-width:1.5}
+.sd-lead{stroke:var(--ink2);stroke-width:1}
+.sd-helio{fill:none;stroke:var(--ink2);stroke-width:2;stroke-dasharray:6 6}
+.sd-sun{fill:var(--turmeric)}
+.sd-pl{fill:var(--ink2)}
+.sd-earth{fill:var(--bar)}
+.sd-voy rect{fill:var(--bar-hi)}
+.sd-arrow{stroke:var(--bar-hi);stroke-width:2.5}
+.sd-head{fill:var(--bar-hi)}
+.sd-box{fill:var(--paper);stroke:var(--line)}
+.sd-pill{fill:var(--paper);stroke:var(--bar-hi);stroke-width:1.5}
+.sd-lab{fill:var(--ink);font-size:20px}
+.sd-sm{font-size:16px}.sd-xs{font-size:14px}.sd-xxs{font-size:12px}
+.sd-mut{fill:var(--ink2)}.sd-strong{font-weight:700}
+.tl{width:100%;border-collapse:collapse;font-size:.98rem}
+.tl th,.tl td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top;line-height:1.6}
+.tl th{color:var(--ink2);font-size:.85rem;font-weight:700}
+.tl td:first-child{white-space:nowrap;font-weight:700;color:var(--leaf)}
+.tl tr.hi td{background:var(--paper)}.tl tr.hi td:first-child{color:var(--vermilion)}
+@media (max-width:560px){.tl{font-size:.92rem}.tl td:first-child{white-space:normal;width:32%}}
 .sources{font-size:.92rem}
 .sources li{font-size:.92rem;line-height:1.6;word-break:break-word}
 .llist{display:grid;gap:12px;margin:18px 0 28px}
