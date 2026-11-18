@@ -25,6 +25,9 @@ class P(HTMLParser):
         elif tag == "h2": self.start("h2")
         elif tag == "p": self.start({"lede": "lede", "byline": "byline", "wish": "wish"}.get(c, "p"))
         elif tag == "div" and c == "kicker": self.start("kicker")
+        elif tag == "div" and c == "kal": self.start("kal")
+        elif tag == "span" and c == "tag": self.start("tag")
+        elif tag == "blockquote": self.start("quote")
         elif tag in ("ul", "ol"): self.list = "bullet" if tag == "ul" else "number"
         elif tag == "li": self.start(self.list)
         elif tag == "b": self.bold += 1
@@ -39,14 +42,15 @@ class P(HTMLParser):
     def handle_endtag(self, tag):
         c = self.cls.pop() if self.cls else ""
         if tag == "b": self.bold -= 1
-        elif tag in ("p", "h1", "h2", "li", "figcaption"): self.cur = None
+        elif tag in ("p", "h1", "h2", "li", "figcaption", "blockquote"): self.cur = None
+        elif tag == "span" and c == "tag": self.cur = None
         elif tag == "a" and self.href and self.cur:
             self.cur[1].append(("  " + self.href, False)); self.href = None
         elif tag == "div":
             if c == "crow": self.row = None
             elif c == "compare": pass
             elif self.cell is not None: self.cell = None
-            if c == "kicker": self.cur = None
+            if c in ("kicker", "kal"): self.cur = None
 
     def handle_data(self, d):
         if not d.strip() and not (self.cur and self.cur[1]): return
@@ -87,8 +91,10 @@ def main(slug):
             continue
         style = {"bullet": "List Bullet", "number": "List Number"}.get(kind)
         para = d.add_paragraph(style=style) if style else d.add_paragraph()
-        size = {"title": 20, "h2": 15, "kicker": 10, "byline": 10}.get(kind, 12)
-        color = {"photo": "2F6BFF", "title": "16213A", "h2": "1E7F47", "kicker": "C2381F", "byline": "4A5468", "wish": "1E7F47"}.get(kind)
+        size = {"title": 20, "h2": 15, "kicker": 10, "byline": 10, "tag": 10}.get(kind, 12)
+        color = {"photo": "2F6BFF", "title": "16213A", "h2": "1E7F47", "kicker": "C2381F", "byline": "4A5468", "wish": "1E7F47",
+                 "tag": "C2381F", "kal": "7A4A00", "quote": "4A5468"}.get(kind)
+        if kind in ("kal", "quote"): para.paragraph_format.left_indent = Pt(18)
         for text, b in runs:
             fontify(para.add_run(text), size, b or kind in ("title", "h2", "lede", "wish"), color)
         if kind in ("h2",): para.paragraph_format.space_before = Pt(14)

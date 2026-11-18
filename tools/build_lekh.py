@@ -23,7 +23,7 @@ ARTICLES = [  # slug, title, date (display), one-line summary
 ]
 
 PRATIBHA = {"dr-s-siddharth"}  # slugs shown on /pratibha/
-ANOKHI = set()  # weekly "Anokhi Duniya" editions (slugs like anokhi-2026-11-20), shown on /anokhi/
+ANOKHI = set()  # weekly "Anokhi Duniya" articles (one per week, slugs like anokhi-2026-11-22-<topic>), shown on /anokhi/
 
 EXTRA_CSS = """
 /* ---- लेख (articles) ---- */
@@ -204,15 +204,16 @@ def main():
         f'<a class="lcard" href="/lekh/{s}/"><h3>{html.escape(t)}</h3><small>{html.escape(dt)}</small><p>{html.escape(sm)}</p></a>'
         for s, t, dt, sm in ARTICLES if s in ANOKHI)
     if not acards:
-        acards = '<div class="lcard"><h3>पहला अंक जल्द</h3><p>हर शुक्रवार शाम 7 बजे, हफ़्ते की 7 अनोखी खबरें।</p></div>'
+        acards = '<div class="lcard"><h3>पहला लेख जल्द</h3><p>हर रविवार सुबह 10 बजे, हफ़्ते की एक सबसे अनोखी खबर की पूरी कहानी।</p></div>'
     body = ('<section><h2>अनोखी दुनिया, इस हफ़्ते</h2><p class="sub"><b>क्या यह कल बदलेगा?</b> '
-            'हर शुक्रवार शाम 7 बजे: दुनिया भर से हफ़्ते की 7 सबसे अनोखी, मज़ेदार और हैरान करने वाली खबरें, '
-            'विज्ञान, अंतरिक्ष, तकनीक, कला और वायरल। हर खबर जाँची-परखी, उसकी पूरी कहानी और इतिहास के साथ, '
-            'और अंत में AnkurX की नज़र से: क्या यह हमारा कल बदलेगा? कोई अनोखी खबर दिखी? हमें भेजें: '
+            'हर रविवार सुबह 10 बजे: दुनिया भर से हफ़्ते की <b>एक</b> सबसे अनोखी, मज़ेदार या हैरान करने वाली खबर, '
+            'विज्ञान, अंतरिक्ष, तकनीक, प्रकृति, कला या वायरल। दस खबरों में से छाँटी गई, जाँची-परखी, और पूरी गहराई से: '
+            'इसकी शुरुआत, इसका असर, इससे जुड़े विवाद, और अंत में AnkurX की नज़र से: क्या यह हमारा कल बदलेगा? '
+            'कोई अनोखी खबर दिखी? हमें भेजें: '
             f'{contact_link()}</p>'
             f'<div class="llist">{acards}</div></section>')
     out = page(head, sprite, header, footer, "अनोखी दुनिया, इस हफ़्ते",
-               "AnkurX: हर हफ़्ते दुनिया की 7 अनोखी खबरें, क्या यह कल बदलेगा?", "https://ankurx.in/anokhi/", body)
+               "AnkurX: हर रविवार हफ़्ते की एक अनोखी खबर की पूरी कहानी, क्या यह कल बदलेगा?", "https://ankurx.in/anokhi/", body)
     os.makedirs(os.path.join(SITE, "anokhi"), exist_ok=True)
     open(os.path.join(SITE, "anokhi", "index.html"), "w", encoding="utf-8").write(out)
     print("built anokhi/index.html")
