@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("vaibhav-suryavanshi", "वैभव सूर्यवंशी: ताजपुर से TIME की सूची तक, 15 साल का 'बॉस बेबी'", "22 नवंबर 2026",
+     "प्रतिभा परिचय: समस्तीपुर के 15 साल के क्रिकेटर की कहानी: 12 की उम्र में रणजी, IPL 2026 में 776 रन, भारत के सबसे युवा पुरुष अंतरराष्ट्रीय खिलाड़ी, और अब TIME100 Next India में नाम।"),
     ("anokhi-2026-11-22-voyager", "वॉयजर-1: एक 'प्रकाश-दिन' दूर, 49 साल पुरानी मशीन जो आज भी घर पर चिट्ठी भेजती है", "22 नवंबर 2026",
      "अनोखी दुनिया: 1977 में छोड़ा गया वॉयजर-1 अब इतना दूर है कि रोशनी को भी एक दिन लगता है। इसकी शुरुआत, खोजें, सोने का रिकॉर्ड (हिंदी अभिवादन के साथ), 70 KB का कंप्यूटर, विवाद, और सवाल: क्या यह कल बदलेगा?"),
     ("ankurx-kahani", "उम्र नहीं, जिज्ञासा चाहिए: AnkurX कैसे बना", "16 नवंबर 2026",
@@ -24,7 +26,7 @@ ARTICLES = [  # slug, title, date (display), one-line summary
      "न मूर्ति, न मंदिर, न पंडित: सूरज, नदी और व्रती के संयम का महापर्व। इसका इतिहास, आज की तस्वीर और बाकी पूजाओं से इसका फ़र्क।"),
 ]
 
-PRATIBHA = {"dr-s-siddharth"}  # slugs shown on /pratibha/
+PRATIBHA = {"dr-s-siddharth", "vaibhav-suryavanshi"}  # slugs shown on /pratibha/
 ANOKHI = {"anokhi-2026-11-22-voyager"}  # weekly "Anokhi Duniya" articles (one per week, slugs like anokhi-2026-11-22-<topic>), shown on /anokhi/
 
 EXTRA_CSS = """
