@@ -47,3 +47,22 @@ Validate and publish with `python3 tools/publish.py push "Bulletin <id>"` (rebui
   - `रोको` → do not publish this bulletin
   If nothing is heard by publish time, it is published as is with the "संपादक की जाँच बाकी" label.
 - **Publish run (08:00 and 18:00):** read the draft from branch `drafts`, look in Gmail for the editor's reply in that thread (from sahukk@gmail.com), apply the instructions, set `unreviewed` false if the editor replied (OK or edits), true otherwise, skip if `रोको`, copy to `data/bulletins/`, publish with tools/publish.py. Also: if the editor has since replied OK to an earlier already-published unreviewed bulletin, remove its `unreviewed` flag. Then send a one-line confirmation email: "प्रकाशित: https://ankurx.in/#b-<id>".
+
+## Avsar (opportunities board) — catchment rules
+Agreed with the editor 2026-11-23. Same region-first approach as the news: start small, expand in phases.
+
+**Phase 1 (now): Tirhut and Darbhanga divisions** — Muzaffarpur, Vaishali, Sitamarhi, Sheohar, East Champaran, West Champaran, Darbhanga, Madhubani, Samastipur.
+**Phase 2 (later):** Kosi (Saharsa, Supaul, Madhepura), Purnia (Purnia, Araria, Kishanganj, Katihar), Begusarai, Khagaria.
+**Phase 3 (later):** Saran division (Saran, Siwan, Gopalganj).
+Move to the next phase only when the editor decides (weekly routine running smoothly, readers asking from those districts). Record the date here.
+
+Every item gets one tag:
+- **Local** (top priority): notices on the official websites of the current-phase districts, and of institutions located there (e.g. LNMU, BRABU, KSDS Sanskrit University, RPCAU Pusa, MGCU Motihari, DMCH, SKMCH, East Central Railway Hajipur apprentices).
+- **Bihar**: posts and schemes open to Bihar residents (BPSC, BSSC, CSBC, Bihar scholarships, Student Credit Card, state internships).
+- **National**: only big, widely useful ones open to all India (UPSC, SSC, RRB, banks, Agniveer, NSP, INSPIRE, PM Internship, NET).
+Also tag qualification level (10th / 12th / ITI-diploma / graduate / PG).
+
+Always leave out: other states' domicile-only recruitment; private-company or placement-agency jobs; outsourced/contract posts unless notified on an official district or department site; anything known only from forwards or coaching sites with no official notice; very senior or specialist posts (exception: local universities).
+
+Each item shows "checked on <date>" and the official notice link; it drops off the board after its last date. No promise of live status updates or of answering individual queries.
+Weekly cycle: change-checker collects new notices → Claude reads each official notice, fills eligibility / last date / fee / link and the tags → editor approves on a review sheet (Sunday) → publish.
