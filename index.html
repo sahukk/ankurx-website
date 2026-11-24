@@ -169,6 +169,13 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
   nav a{padding:4px 9px;font-size:.88rem}
 }
 @media (prefers-reduced-motion:reduce){.item.flash{animation:none}}
+.bookcard{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--turmeric);border-radius:14px;padding:18px 20px;margin-top:8px}
+.bookcard img{width:100%;height:auto;border-radius:5px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.bookcard .k{font-size:.85rem;font-weight:700;color:var(--vermilion);letter-spacing:.02em}
+.bookcard h3{font-family:var(--display);font-weight:400;font-size:1.45rem;margin:2px 0 4px;line-height:1.2}
+.bookcard p{margin:0 0 12px;color:var(--ink2)}
+.bookcard>*{min-width:0}
+@media (max-width:560px){.bookcard{grid-template-columns:90px 1fr;gap:14px}.bookcard h3{font-size:1.2rem}}
 </style>
 </head>
 <body>
@@ -219,6 +226,18 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
     </div>
   </div>
 
+  <section class="wrap" data-views="home" id="books-promo">
+        <a class="bookcard" href="/books/" style="text-decoration:none;color:inherit">
+      <img src="/books/img/cryptophytes_cover.jpg" alt="Cryptophytes: The Hidden Algae, book cover" width="563" height="900" loading="lazy">
+      <div>
+        <div class="k">हमारी पहली पुस्तक · जल्द आ रही है</div>
+        <h3>Cryptophytes: The Hidden Algae</h3>
+        <p>An Introduction for Students · K.K. Sahu. Paperback and Kindle, India and worldwide.</p>
+        <span class="btn main">सभी पुस्तकें देखें →</span>
+      </div>
+    </a>
+  </section>
+
   <!-- BULLETIN (home + single) -->
   <section id="latest" class="wrap" data-views="home bulletin">
     <h2 id="b-title">ताज़ा बुलेटिन</h2>
@@ -243,6 +262,8 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
       <div class="seg" style="--c:var(--x)"><div class="when">हर हफ़्ते</div><h3>नई सोच</h3><p>विज्ञान, तकनीक और नवाचार, और उत्तर बिहार के लिए उनका मतलब।</p></div>
     </div>
   </section>
+
+
 
   <!-- ARCHIVE -->
   <section class="wrap" id="v-archive" data-views="archive">
