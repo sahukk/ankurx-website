@@ -10,6 +10,8 @@ import os, re, html
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES = [  # slug, title, date (display), one-line summary
+    ("saans-ka-vigyan", "आपकी नाक चुपके से शिफ्ट बदलती है! साँसों का विज्ञान और अध्यात्म", "24 नवंबर 2026",
+     "रास्ता एक, तो नथुने दो क्यों? नासिका चक्र, वेगस नर्व, इड़ा-पिंगला-सुषुम्ना और प्राणायाम: साँसों की कहानी, विज्ञान और अध्यात्म दोनों की नजर से। दो आसान प्रयोगों के साथ।"),
     ("avsar-shuruaat", "मौका दरवाज़ा नहीं खटखटाता, बस तारीख़ निकल जाती है", "23 नवंबर 2026", "अवसर: नौकरी, छात्रवृत्ति, प्रतियोगिता और फ़ेलोशिप, हमेशा आधिकारिक लिंक के साथ। ठगी से बचने के 7 नियम और आज ही करने लायक 5 तैयारियाँ।"),
     ("vaibhav-suryavanshi", "वैभव सूर्यवंशी: ताजपुर से TIME की सूची तक, 15 साल का 'बॉस बेबी'", "22 नवंबर 2026",
      "प्रतिभा परिचय: समस्तीपुर के 15 साल के क्रिकेटर की कहानी: 12 की उम्र में रणजी, IPL 2026 में 776 रन, भारत के सबसे युवा पुरुष अंतरराष्ट्रीय खिलाड़ी, और अब TIME100 Next India में नाम।"),
@@ -54,6 +56,10 @@ EXTRA_CSS = """
 .lekh .vidbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#16213A}
 .lekh .vidbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .lekh .vidwait{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.lekh .tbl{overflow-x:auto;margin:12px 0 16px}
+.lekh table{border-collapse:collapse;width:100%;font-size:1rem}
+.lekh th,.lekh td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.lekh th{background:var(--ground);color:var(--leaf)}
 /* ---- Anokhi Duniya weekly stories ---- */
 .lekh .story{border-top:2px dashed var(--line);margin-top:1.6em;padding-top:.4em}
 .lekh .story .tag{display:inline-block;font-size:.85rem;font-weight:700;color:#fff;background:var(--vermilion);border-radius:999px;padding:2px 12px;margin-top:.8em}
