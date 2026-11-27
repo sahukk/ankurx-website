@@ -178,6 +178,17 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
 .bookcard p{margin:0 0 12px;color:var(--ink2)}
 .bookcard>*{min-width:0}
 @media (max-width:560px){.bookcard{grid-template-columns:90px 1fr;gap:14px}.bookcard h3{font-size:1.2rem}}
+#book-ticker{margin-top:4px}
+.ticker{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--turmeric);border-radius:10px;overflow:hidden;font-size:.95rem}
+.ticker:hover,.ticker:focus-visible{border-color:var(--turmeric)}
+.tk-label{flex:none;background:var(--turmeric);color:#16213A;font-weight:700;padding:7px 12px;white-space:nowrap}
+.tk-track{flex:1;overflow:hidden;min-width:0}
+.tk-move{display:inline-flex;white-space:nowrap;animation:tk 32s linear infinite;padding-block:7px}
+.tk-move>span{padding-right:4em}
+.ticker:hover .tk-move,.ticker:focus-visible .tk-move{animation-play-state:paused}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tk-move{animation:none}.tk-move>span+span{display:none}.tk-track{text-overflow:ellipsis}}
+#books-promo{padding-block:8px 28px}
 </style>
 </head>
 <body>
@@ -228,17 +239,13 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
     </div>
   </div>
 
-  <section class="wrap" data-views="home" id="books-promo">
-        <a class="bookcard" href="/books/" style="text-decoration:none;color:inherit">
-      <img src="/books/img/cryptophytes_cover.jpg" alt="Cryptophytes: The Hidden Algae, book cover" width="563" height="900" loading="lazy">
-      <div>
-        <div class="k">हमारी पहली पुस्तक · जल्द आ रही है</div>
-        <h3>Cryptophytes: The Hidden Algae</h3>
-        <p>An Introduction for Students · K.K. Sahu. Paperback and Kindle, India and worldwide.</p>
-        <span class="btn main">सभी पुस्तकें देखें →</span>
-      </div>
+
+  <div class="wrap" data-views="home" id="book-ticker">
+    <a class="ticker" href="#books-promo" aria-label="नई पुस्तक: Cryptophytes: The Hidden Algae, नीचे देखें">
+      <span class="tk-label">नई पुस्तक</span>
+      <span class="tk-track" aria-hidden="true"><span class="tk-move"><span>📚 AnkurX Books की पहली पुस्तक <b>Cryptophytes: The Hidden Algae</b> जल्द आ रही है &nbsp;·&nbsp; B.Sc. छात्रों के लिए आसान अंग्रेज़ी में &nbsp;·&nbsp; Paperback और Kindle &nbsp;·&nbsp; जानने के लिए यहाँ क्लिक करें ↓</span><span>📚 AnkurX Books की पहली पुस्तक <b>Cryptophytes: The Hidden Algae</b> जल्द आ रही है &nbsp;·&nbsp; B.Sc. छात्रों के लिए आसान अंग्रेज़ी में &nbsp;·&nbsp; Paperback और Kindle &nbsp;·&nbsp; जानने के लिए यहाँ क्लिक करें ↓</span></span></span>
     </a>
-  </section>
+  </div>
 
   <!-- BULLETIN (home + single) -->
   <section id="latest" class="wrap" data-views="home bulletin">
@@ -263,6 +270,19 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
       <div class="seg" style="--c:var(--turmeric)"><div class="when">हर हफ़्ते</div><h3>समझ बढ़ाओ</h3><p>एक विषय, आसान भाषा में: AI कैसे काम करता है, जीन रिसर्च क्या है, इंटरव्यू की तैयारी।</p></div>
       <div class="seg" style="--c:var(--x)"><div class="when">हर हफ़्ते</div><h3>नई सोच</h3><p>विज्ञान, तकनीक और नवाचार, और उत्तर बिहार के लिए उनका मतलब।</p></div>
     </div>
+  </section>
+
+  <section class="wrap" data-views="home" id="books-promo">
+    <h2>हमारी पुस्तकें</h2>
+        <a class="bookcard" href="/books/" style="text-decoration:none;color:inherit">
+      <img src="/books/img/cryptophytes_cover.jpg" alt="Cryptophytes: The Hidden Algae, book cover" width="563" height="900" loading="lazy">
+      <div>
+        <div class="k">हमारी पहली पुस्तक · जल्द आ रही है</div>
+        <h3>Cryptophytes: The Hidden Algae</h3>
+        <p>An Introduction for Students · K.K. Sahu. Paperback and Kindle, India and worldwide.</p>
+        <span class="btn main">सभी पुस्तकें देखें →</span>
+      </div>
+    </a>
   </section>
 
 
@@ -451,6 +471,7 @@ footer{padding-block:24px 32px;color:var(--ink2);font-size:.92rem}
   });
   $("#q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();renderBulletin()});
   let at;$("#aq").addEventListener("input",e=>{clearTimeout(at);at=setTimeout(()=>searchAll(e.target.value),250)});
+  document.addEventListener("click",e=>{const t=e.target.closest('a[href="#books-promo"]');if(!t)return;e.preventDefault();const el=document.getElementById("books-promo");if(el)el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})});
   window.addEventListener("hashchange",route);
 
   route();
